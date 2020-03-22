@@ -19,13 +19,18 @@
     ]
   },
   "dependencies": {
-    "@umijs/preset-react": "1.x",
-    "@umijs/test": "^3.0.4",
-    "lint-staged": "^10.0.7",
-    "prettier": "^1.19.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "umi": "^3.0.4",
-    "yorkie": "^2.0.0"
+    "antd": "4.0.3",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "yorkie": "2.0.0"
+  },
+  "devDependencies": {
+    "@umijs/preset-react": "1.4.6",
+    "@umijs/test": "3.0.12",
+    "lint-staged": "10.0.8",
+    "prettier": "2.0.1",
+    "umi": "3.0.12",
+    "umi-plugin-antd-icon-config": "2.0.0",
+    "umi-types": "0.5.13"
   }
 }
