@@ -95,16 +95,16 @@ module.exports = merge(common, {
     'overlay': true,
     // 显示运行进度
     'progress': true,
-    // 'proxy': {
-    //   '/api': {
-    //     target: 'http://af.sit.hupu.com/',
-    //     pathRewrite: {
-    //       '^/api': '/api',
-    //     },
-    //     secure: false,
-    //     changeOrigin: true,
-    //   },
-    // },
+    'proxy': {
+      '/api': {
+        target: 'http://localhost：3000/',
+        pathRewrite: {
+          '^/api': '/api',
+        },
+        secure: false,
+        changeOrigin: true,
+      },
+    },
     'headers': {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': '*',
