@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    "target": "ES2015", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
+    "module": "commonjs", /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "lib": [
+      "dom",
+      "webworker",
+      "es6",
+      "es2016",
+      "esnext"
+    ], /* Specify libr·ary files to be included in the compilation. */
+    "jsx": "react",
+    "sourceMap": true, /* Generates corresponding '.map' file. */
+    "strict": false,
+    "allowJs": false, /* Enable all strict type-checking options. */
+    "noImplicitAny": false, /* Raise error on expressions and declarations with an implied 'any' type. */
+    "baseUrl": "src", /* Base directory to resolve non-absolute module names. */
+    "paths": {
+      "@app/*": [
+        "./app/*"
+      ],
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@components/*": [
+        "./components/*"
+      ],
+      "@config/*": [
+        "./config/*"
+      ],
+      "@layouts/*": [
+        "./layouts/*"
+      ],
+      "@pages/*": [
+        "./pages/*"
+      ],
+      "@styles/*": [
+        "./styles/*"
+      ],
+      "@utils/*": [
+        "./utils/*"
+      ],
+      "@views/*": [
+        "./views/*"
+      ]
+    }, /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    "esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "./config",
+    "./node_modules",
+    "./**/*.js"
+  ]
+}
