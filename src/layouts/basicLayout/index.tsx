@@ -13,7 +13,7 @@ const layoutConfig = {
 }
 export default () => {
   const [menuData, setMenuData] = useState<MenuDataItem[]>([])
-  const [mylocation, setMylocation] = useState('/')
+  const [mylocation, setMylocation] = useState('/demo')
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
     menus.map(({ icon, children, ...item }) => ({
       ...item,
