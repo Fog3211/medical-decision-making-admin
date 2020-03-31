@@ -1,11 +1,23 @@
 export const menus = [
   {
     path: '/',
-    name: '数据统计',
+    name: '数据管理',
     icon: 'smile',
     children: [
       {
-        path: '/用户pv',
+        path: '/数据统计',
+        name: 'two',
+        icon: 'smile',
+        exact: true,
+      },
+      {
+        path: '/疾病数据',
+        name: 'two',
+        icon: 'smile',
+        exact: true,
+      },
+      {
+        path: '/医院数据',
         name: 'two',
         icon: 'smile',
         exact: true,
@@ -19,7 +31,13 @@ export const menus = [
     children: [
       {
         path: '/demo',
-        name: 'two',
+        name: '权限分配',
+        icon: 'smile',
+        exact: true,
+      },
+      {
+        path: '/demo',
+        name: '权限分配',
         icon: 'smile',
         exact: true,
       },
@@ -31,7 +49,13 @@ export const menus = [
     icon: 'smile',
     children: [
       {
-        path: '/demo',
+        path: '/',
+        name: '医学信息推送',
+        icon: 'smile',
+        exact: true,
+      },
+      {
+        path: '/医学信息推送',
         name: 'two',
         icon: 'smile',
         exact: true,
@@ -39,8 +63,16 @@ export const menus = [
     ],
   },
   {
-    path: '/test',
-    name: '测试',
-    icon: 'heart',
-  },
+    path: '/',
+    name: '用户反馈',
+    icon: 'smile',
+    children: [
+      {
+        path: '/',
+        name: '功能建议',
+        icon: 'smile',
+        exact: true,
+      },
+    ],
+  }
 ]
