@@ -5,6 +5,6 @@ declare module '*.png' {
 }
 
 declare module '*.less' {
-  const styles: Record<string, string>;
-  export = styles;
+  const styles: Record<string, string>
+  export = styles
 }

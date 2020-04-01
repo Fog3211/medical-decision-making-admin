@@ -1,10 +1,10 @@
-const path = require('path');
-const appSrc = path.resolve(__dirname, '../src');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const appSrc = path.resolve(__dirname, '../src')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {
   CheckerPlugin,
-} = require('awesome-typescript-loader');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+} = require('awesome-typescript-loader')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {

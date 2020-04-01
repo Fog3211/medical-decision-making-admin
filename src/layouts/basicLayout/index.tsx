@@ -5,7 +5,7 @@ import { Avatar, Dropdown, Menu } from "antd"
 import { SwitchPage } from '@components/index'
 import { routes } from '@config/router.config'
 import { menus } from '@config/menu.config'
-import { IconMap } from '@config/icon.config'
+import IconMap from '@config/icon.config'
 
 const layoutConfig = {
   // logo: null,

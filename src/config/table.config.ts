@@ -1,20 +1,6 @@
-import { ColumnProps } from 'antd/lib/table';
-export const TAG_TYPE = [
-  { type: 'default', title: '默认标签' },
-  {
-    type: 'entity',
-    title: '实体标签',
-  },
-  {
-    type: 'topic',
-    title: '话题分类标签',
-  },
-  {
-    type: 'quality',
-    title: '质量分级标签',
-  },
-];
-export const tagNameManageColumns: ColumnProps<any>[] = [
+import { ColumnProps } from 'antd/lib/table'
+
+export const authManageColumns: ColumnProps<any>[] = [
   {
     title: 'ID',
     dataIndex: 'id',
@@ -22,43 +8,33 @@ export const tagNameManageColumns: ColumnProps<any>[] = [
     key: 'id',
   },
   {
-    title: '标签名称',
+    title: '姓名',
     dataIndex: 'name',
     align: 'center',
     key: 'name',
   },
   {
-    title: '标签描述',
-    dataIndex: 'describe',
+    title: '性别',
+    dataIndex: 'sex',
     align: 'center',
-    key: 'describe',
-    width: 150,
+    key: 'sex',
   },
   {
-    title: '所属业务线',
-    dataIndex: 'department',
+    title: '权限级别',
+    dataIndex: 'auth',
     align: 'center',
-    key: 'department',
+    key: 'auth',
   },
   {
-    title: '添加人',
-    dataIndex: 'editor',
+    title: '创建时间',
+    dataIndex: 'create_time',
     align: 'center',
-    key: 'editor',
+    key: 'create_time',
   },
   {
-    title: '添加时间',
-    dataIndex: 'createDate',
+    title: '手机号',
+    dataIndex: 'phone',
     align: 'center',
-    key: 'createDate',
-  },
-  {
-    title: '用户是否可见',
-    dataIndex: 'show',
-    align: 'center',
-    key: 'show',
-    render: text => {
-      return Boolean(text) === false ? '隐藏' : '可见';
-    },
-  },
-];
+    key: 'phone',
+  }
+]

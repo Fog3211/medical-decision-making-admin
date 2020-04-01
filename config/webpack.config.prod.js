@@ -1,18 +1,18 @@
-const path = require('path');
-const merge = require('webpack-merge');
-const common = require('./webpack.config.js');
-const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const path = require('path')
+const merge = require('webpack-merge')
+const common = require('./webpack.config.js')
+const TerserPlugin = require('terser-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const WebpackDeepScopeAnalysisPlugin =
-  require('webpack-deep-scope-plugin').default;
-const productionName = process.cwd().split('/').pop();
+  require('webpack-deep-scope-plugin').default
+const productionName = process.cwd().split('/').pop()
 
 // 每次执行打包 先清除之前的打包文件
 const {
   CleanWebpackPlugin,
-} = require('clean-webpack-plugin');
-const appSrc = path.resolve(__dirname, '../src');
+} = require('clean-webpack-plugin')
+const appSrc = path.resolve(__dirname, '../src')
 
 module.exports = merge(common, {
   mode: 'production',
@@ -111,4 +111,4 @@ module.exports = merge(common, {
       }),
     ],
   }
-});
+})

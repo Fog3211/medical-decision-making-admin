@@ -3,12 +3,12 @@ interface anyObj {
 }
 
 interface fetchType {
-  type: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  url: string;
-  data: anyObj;
+  type: 'GET' | 'POST' | 'PUT' | 'DELETE'
+  url: string
+  data: anyObj
 }
 
-const token = window.sessionStorage.getItem('token');
+const token = window.sessionStorage.getItem('token')
 
 const fetchData: (params: fetchType) => Promise<any> = async (params: fetchType) => {
   const { type, data } = params
@@ -39,12 +39,12 @@ const fetchData: (params: fetchType) => Promise<any> = async (params: fetchType)
   } else {
     requestHeader.body = JSON.stringify(data)
   }
-  const response = await fetch(params.url, requestHeader);
-  return response.json();
+  const response = await fetch(params.url, requestHeader)
+  return response.json()
 }
 
 function transformDataToUrl(data: anyObj) {
-  data = data || {};
+  data = data || {}
   let params: string = '?'
   for (let key in data) {
     if (key) {

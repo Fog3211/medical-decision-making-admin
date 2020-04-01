@@ -1,7 +1,9 @@
-import Demo from "./demo"
-import Test from "./test"
+import DataStatistic from "./dataStatistic"
+import AuthManage from "./authManage"
+import DiseaseData from "./diseaseData"
 
 export {
-    Demo,
-    Test
+    DataStatistic,
+    AuthManage,
+    DiseaseData
 }

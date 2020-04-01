@@ -1,8 +1,8 @@
-const merge = require('webpack-merge');
-const common = require('./webpack.config.js');
-const path = require('path');
+const merge = require('webpack-merge')
+const common = require('./webpack.config.js')
+const path = require('path')
 
-const appSrc = path.resolve(__dirname, '../src');
+const appSrc = path.resolve(__dirname, '../src')
 
 module.exports = merge(common, {
   mode: 'production',
@@ -111,4 +111,4 @@ module.exports = merge(common, {
       'Access-Control-Allow-Methods': '*',
     },
   },
-});
+})

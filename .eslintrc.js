@@ -26,4 +26,4 @@ module.exports = {
     'react/jsx-key': 'error',
     'react/no-array-index-key': 'error',
   },
-};
+}

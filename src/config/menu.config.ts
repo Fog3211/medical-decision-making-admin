@@ -1,78 +1,48 @@
 export const menus = [
   {
-    path: '/',
+    path: '/data',
     name: '数据管理',
-    icon: 'smile',
+    icon: 'dashboard',
     children: [
-      {
-        path: '/数据统计',
-        name: 'two',
-        icon: 'smile',
-        exact: true,
-      },
-      {
-        path: '/疾病数据',
-        name: 'two',
-        icon: 'smile',
-        exact: true,
-      },
-      {
-        path: '/医院数据',
-        name: 'two',
-        icon: 'smile',
-        exact: true,
-      },
+      { path: '/data_statistic', name: '数据统计', icon: 'chart', exact: true, },
+      { path: '/disease_data', name: '疾病数据', icon: 'smile', exact: true, },
+      { path: '/ttt', name: '医院数据', icon: 'smile', exact: true, },
     ],
   },
   {
-    path: '/',
-    name: '用户管理',
-    icon: 'smile',
+    path: '/person',
+    name: '人员管理',
+    icon: 'team',
     children: [
-      {
-        path: '/demo',
-        name: '权限分配',
-        icon: 'smile',
-        exact: true,
-      },
-      {
-        path: '/demo',
-        name: '权限分配',
-        icon: 'smile',
-        exact: true,
-      },
+      { path: '/user_manage', name: '用户管理', icon: 'user', exact: true, },
+      { path: '/auth_manage', name: '权限管理', icon: 'smile', exact: true, },
     ],
   },
   {
-    path: '/',
-    name: '推送设置',
-    icon: 'smile',
+    path: '/chat',
+    name: '用户沟通',
+    icon: 'chat',
     children: [
-      {
-        path: '/',
-        name: '医学信息推送',
-        icon: 'smile',
-        exact: true,
-      },
-      {
-        path: '/医学信息推送',
-        name: 'two',
-        icon: 'smile',
-        exact: true,
-      },
+      { path: '/user_manage', name: '用户管理', icon: 'user', exact: true, },
     ],
   },
   {
-    path: '/',
-    name: '用户反馈',
+    path: '/push',
+    name: '推送管理',
     icon: 'smile',
     children: [
-      {
-        path: '/',
-        name: '功能建议',
-        icon: 'smile',
-        exact: true,
-      },
+      { path: '/', name: '医学信息推送', icon: 'smile', exact: true, },
+      { path: '/医学信息推送', name: 'two', icon: 'smile', exact: true, },
     ],
-  }
+  },
+  {
+    path: '/person_setting',
+    name: '个人设置',
+    icon: 'setting',
+    children: [
+      { path: '/personal_account', name: '个人账户', icon: 'password', exact: true, },
+      { path: '/lang_setting', name: '多语言支持', icon: 'global', exact: true, },
+      { path: '/theme_setting', name: '自定义主题', icon: 'theme', exact: true, },
+    ],
+  },
 ]
