@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import ProLayout, { MenuDataItem } from '@ant-design/pro-layout'
 import { Link } from "react-router-dom"
-import { Avatar, Dropdown, Menu } from "antd"
+import { UserInfo } from "./widget/index"
 import { SwitchPage } from '@components/index'
 import { routes } from '@config/router.config'
 import { menus } from '@config/menu.config'
 import IconMap from '@config/icon.config'
+import { userInfoType } from '@config/type.config'
 
 const layoutConfig = {
   // logo: null,
@@ -20,6 +21,7 @@ export interface BasicLayoutProps {
 const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
   const [menuData, setMenuData] = useState<MenuDataItem[]>([])
   const [pathname, setPathname] = useState('/demo')
+  const [userInfo, setUserInfo] = useState<userInfoType>(null)
 
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
     menus.map(({ icon, children, ...item }) => ({
@@ -28,8 +30,18 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
       children: children && loopMenuItem(children),
     }))
 
+  const getUserInfo = () => {
+    const result = {
+      avatar: "https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg",
+      username: 'fog2312',
+      isLogin: true
+    }
+    setUserInfo(result)
+  }
+
   useEffect(() => {
     setMenuData(menus)
+    getUserInfo()
   }, [])
 
   return (
@@ -46,32 +58,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
       }}
       menuDataRender={() => loopMenuItem(menus)}
       location={{ pathname: pathname }}
-      rightContentRender={() =>
-        (<div>
-          <Dropdown placement="bottomCenter" overlay={<Menu>
-            <Menu.Item>
-              <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-                修改密码
-              </a>
-            </Menu.Item>
-            <Menu.Item>
-              <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-                注销登录
-              </a>
-            </Menu.Item>
-            <Menu.Item>
-              <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-                多语言设置
-              </a>
-            </Menu.Item>
-          </Menu>}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-              name
-            </a>
-          </Dropdown>
-          <Avatar src="https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg" />
-        </div>)
-      }
+      rightContentRender={() => <UserInfo userInfo={userInfo} />}
     >
       <SwitchPage routes={routes} />
     </ProLayout>

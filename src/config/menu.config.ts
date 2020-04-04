@@ -1,3 +1,4 @@
+// 左侧菜单
 export const menus = [
   {
     path: '/data',
@@ -28,13 +29,12 @@ export const menus = [
     ],
   },
   {
-    path: '/person_setting',
-    name: '个人设置',
-    icon: 'setting',
+    path: '/decision',
+    name: '决策管理',
+    icon: 'smile',
     children: [
-      { path: '/personal_account', name: '个人账户', icon: 'password', exact: true, },
-      { path: '/lang_setting', name: '多语言支持', icon: 'global', exact: true, },
-      { path: '/theme_setting', name: '自定义主题', icon: 'theme', exact: true, },
+      { path: '/decision_review', name: '决策审核', icon: 'review', exact: true, },
+      { path: '/decision_setting', name: '决策设置', icon: 'setting', exact: true, },
     ],
   },
 ]

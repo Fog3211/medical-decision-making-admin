@@ -40,3 +40,9 @@ export type authRecordType = {
     auth_code: number
     is_forbidden: boolean
 }
+// 用户信息类型
+export type userInfoType = {
+    username: string
+    isLogin: boolean
+    avatar: string
+}
