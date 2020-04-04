@@ -19,14 +19,6 @@ export const menus = [
     ],
   },
   {
-    path: '/chat',
-    name: '用户沟通',
-    icon: 'chat',
-    children: [
-      { path: '/user_manage', name: '用户管理', icon: 'user', exact: true, },
-    ],
-  },
-  {
     path: '/push',
     name: '推送管理',
     icon: 'smile',

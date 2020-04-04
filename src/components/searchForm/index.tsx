@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FormProps } from 'antd/lib/form'
-import { Select, Input, DatePicker, Form, Col, Cascader } from 'antd'
+import { Select, Input, DatePicker, Form, Col } from 'antd'
 import { searchFormType } from '@config/type.config'
 
 const { RangePicker } = DatePicker
@@ -36,10 +36,6 @@ const SearchForm: React.FC<SearchFormProps> = (props: SearchFormProps) => {
                 return (
                     <RangePicker {...item.props} style={{ width: '100%' }} />
                 )
-            case 'cascader':
-                return (
-                    <Cascader {...item.props} placeholder={item.placeholder} />
-                )
             case 'textArea':
                 return (
                     <TextArea {...item.props} placeholder={item.placeholder} />
@@ -54,7 +50,7 @@ const SearchForm: React.FC<SearchFormProps> = (props: SearchFormProps) => {
             {
                 formConfig.map((item, index) => (
                     <Col key={index} span={item.span}>
-                        <Form.Item label={item.label} name={item.key}>
+                        <Form.Item label={item.label} name={item.key} rules={item.rules}>
                             {renderFormItemByType(item)}
                         </Form.Item>
                     </Col>

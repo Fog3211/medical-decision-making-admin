@@ -1,4 +1,8 @@
-import { AuthManage, DataStatistic, DiseaseData } from '@pages/index'
+import {
+  DataStatistic, DiseaseData,
+  UserManage, AuthManage,
+  Login
+} from '@pages/index'
 
 export interface routeConfigType {
   path?: string
@@ -26,11 +30,25 @@ const routes: routeConfigType[] = [
     key: 'disease_data'
   },
   {
+    path: '/user_manage',
+    template: UserManage,
+    name: '用户管理',
+    exact: true,
+    key: 'user_manage'
+  },
+  {
     path: '/auth_manage',
     template: AuthManage,
     name: '权限管理',
     exact: true,
     key: 'auth_manage'
+  },
+  {
+    path: '/login',
+    template: Login,
+    name: '登录界面',
+    exact: true,
+    key: 'login'
   },
   {
     path: '/',

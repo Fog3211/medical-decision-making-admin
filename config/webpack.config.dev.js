@@ -1,55 +1,22 @@
-const merge = require('webpack-merge')
+const merge = require('webpack-merge');
 const common = require('./webpack.config.js')
-const path = require('path')
-
-const appSrc = path.resolve(__dirname, '../src')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 module.exports = merge(common, {
-  mode: 'production',
-  devtool: 'source-map',
-  // 出口
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
   output: {
-    filename: '[name]_[hash:8].js',
-    // pathinfo: true,
-    // // 所有输出文件的目标路径
-    // // 必须是绝对路径（使用 Node.js 的 path 模块）
-    // // chunk名称配置
-    // chunkFilename: '[name].chunk.js',
-    // // 输出的文件名配置
-    // filename: 'bundle.js',
-    // sourceMapFilename: '[name].chunk.map.js',
+    publicPath: '/',
+    library: '[name]',
+    libraryTarget: 'umd',
+    jsonpFunction: `webpackJsonp_feedback`,
+    globalObject: 'this',
   },
   module: {
     rules: [{
-        test: /\.html/,
-        use: [{
-          loader: 'html-loader',
-        }],
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        include: appSrc,
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-        },
-      },
-      // 针对静态文件
-      {
-        test: /\.(png|jpg|gif)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          name: 'static/[name].[hash:8].[ext]',
-        },
-      },
-      {
         test: /\.(css|less)$/,
         exclude: /node_modules/,
-        use: [
-          'style-loader',
-          {
+        use: ['style-loader', {
             loader: 'css-loader',
             options: {
               modules: true,
@@ -86,20 +53,21 @@ module.exports = merge(common, {
       },
     ],
   },
+  plugins: [
+    new ForkTsCheckerWebpackPlugin(),
+  ],
   devServer: {
-    // HOST
     'host': 'localhost',
-    // 端口
     // 'port': 8181,
     // 报错提示在网页遮罩层
     'overlay': true,
     // 显示运行进度
     'progress': true,
     'proxy': {
-      '/api': {
-        target: 'http://localhost：3000/',
+      '/admin': {
+        target: 'http://kf-feedback.sit.hupu.io',
         pathRewrite: {
-          '^/api': '/api',
+          '^/admin': '/admin',
         },
         secure: false,
         changeOrigin: true,
@@ -111,4 +79,4 @@ module.exports = merge(common, {
       'Access-Control-Allow-Methods': '*',
     },
   },
-})
+});

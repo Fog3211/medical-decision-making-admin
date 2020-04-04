@@ -36,7 +36,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
     <ProLayout
       {...layoutConfig}
       style={{
-        height: '100vh',
+        height: '100vh'
       }}
       menuItemRender={(menuItemProps, defaultDom) => {
         if (menuItemProps.isUrl || menuItemProps.children || !menuItemProps.path) {
@@ -69,7 +69,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
               name
             </a>
           </Dropdown>
-          <Avatar src="https://avatars1.githubusercontent.com/u/8186664?s=460&v=4" />
+          <Avatar src="https://img95.699pic.com/photo/40011/0709.jpg_wh860.jpg" />
         </div>)
       }
     >

@@ -1,13 +1,3 @@
-interface anyObj {
-  [name: string]: any
-}
-
-interface fetchType {
-  type: 'GET' | 'POST' | 'PUT' | 'DELETE'
-  url: string
-  data: anyObj
-}
-
 const token = window.sessionStorage.getItem('token')
 
 const fetchData: (params: fetchType) => Promise<any> = async (params: fetchType) => {

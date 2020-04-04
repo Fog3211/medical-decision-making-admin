@@ -18,10 +18,25 @@ export type searchFormType = {
     placeholder?: string
     span: number
     type: searchFormItemType
+    rules?: anyObj[]
     props?: anyObj
 }
 //权限管理列表类型
 export type authManageItemType = {
     id: number
+    puid: number
+    username: string
+    phonenumber: number
+    auth_label: string
+}
+//权限管理列表类型
+export type authRecordType = {
+    id: number
+    puid: number
     name: string
+    phonenumber: number
+    email: string
+    create_time: string
+    auth_code: number
+    is_forbidden: boolean
 }

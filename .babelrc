@@ -1,24 +1,22 @@
 {
   "presets": [
-    "@babel/preset-typescript",
-    "@babel/preset-react",
-    "@babel/preset-env"
-  ],
-  "plugins": [
     [
-      "@babel/plugin-proposal-class-properties"
-    ],
-    [
-      "@babel/plugin-transform-typescript",
+      "@babel/preset-env",
       {
-        "allowNamespaces": true
+        "useBuiltIns": "entry",
+        "corejs": 3
       }
     ],
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
     [
       "import",
       {
         "libraryName": "antd",
-        "style": "css"
+        "libraryDirectory": "es",
+        "style": true
       }
     ]
   ]
