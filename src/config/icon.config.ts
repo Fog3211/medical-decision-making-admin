@@ -5,7 +5,7 @@ import {
     FireOutlined, AreaChartOutlined, BgColorsOutlined,
     GlobalOutlined, UserOutlined, DashboardOutlined,
     CommentOutlined, KeyOutlined, LogoutOutlined,
-    AuditOutlined
+    AuditOutlined, ApartmentOutlined
 } from '@ant-design/icons'
 
 const IconMap = {
@@ -24,7 +24,8 @@ const IconMap = {
     chat: CommentOutlined,
     key: KeyOutlined,
     logout: LogoutOutlined,
-    review: AuditOutlined
+    review: AuditOutlined,
+    grade: ApartmentOutlined,
 }
 
 Object.keys(IconMap).forEach(item => {

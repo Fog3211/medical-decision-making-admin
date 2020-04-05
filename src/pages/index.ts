@@ -3,6 +3,7 @@ import AuthManage from "./authManage"
 import UserManage from "./userManage"
 import DiseaseData from "./diseaseData"
 import Login from "./login"
+import Home from "./home"
 import NotFound from "./notFound"
 
 export {
@@ -10,5 +11,6 @@ export {
     AuthManage, UserManage,
     DiseaseData,
     Login,
+    Home,
     NotFound
 }

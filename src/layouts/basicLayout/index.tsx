@@ -19,8 +19,7 @@ export interface BasicLayoutProps {
 }
 
 const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
-  const [menuData, setMenuData] = useState<MenuDataItem[]>([])
-  const [pathname, setPathname] = useState('/demo')
+  const [pathname, setPathname] = useState('/')
   const [userInfo, setUserInfo] = useState<userInfoType>(null)
 
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
@@ -38,9 +37,21 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
     }
     setUserInfo(result)
   }
-
+  // 找到对应的pathname
+  const getPathname = (menus: MenuDataItem[]) => {
+    menus.map(item => {
+      if (item.children) {
+        getPathname(item.children)
+      } else {
+        const currentUrl = window.location.hash
+        if ('#' + item.path === currentUrl) {
+          setPathname(item.path)
+        }
+      }
+    })
+  }
   useEffect(() => {
-    setMenuData(menus)
+    getPathname(menus)
     getUserInfo()
   }, [])
 

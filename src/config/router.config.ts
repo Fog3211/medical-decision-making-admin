@@ -1,7 +1,7 @@
 import {
   DataStatistic, DiseaseData,
   UserManage, AuthManage,
-  Login
+  NotFound, Home
 } from '@pages/index'
 
 export interface routeConfigType {
@@ -12,6 +12,7 @@ export interface routeConfigType {
   template?: React.ComponentClass | React.FC
   children?: any[]
   key?: string
+  noBread?: boolean
 }
 
 const routes: routeConfigType[] = [
@@ -44,16 +45,24 @@ const routes: routeConfigType[] = [
     key: 'auth_manage'
   },
   {
-    path: '/login',
-    template: Login,
-    name: '登录界面',
+    path: '/home',
+    template: Home,
+    name: '主页',
     exact: true,
-    key: 'login'
+    key: 'home'
+  },
+  {
+    path: '/404',
+    template: NotFound,
+    name: '页面丢失',
+    exact: true,
+    key: '404',
+    noBread: true
   },
   {
     path: '/',
     exact: true,
-    redirect: '/home'
+    redirect: '/404'
   }
 ]
 

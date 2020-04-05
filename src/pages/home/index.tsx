@@ -20,7 +20,7 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
 
     return (
         <div>
-            login
+            home
         </div>
     )
 }

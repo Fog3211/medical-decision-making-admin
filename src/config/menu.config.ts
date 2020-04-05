@@ -16,7 +16,7 @@ export const menus = [
     icon: 'team',
     children: [
       { path: '/user_manage', name: '用户管理', icon: 'user', exact: true, },
-      { path: '/auth_manage', name: '权限管理', icon: 'smile', exact: true, },
+      { path: '/auth_manage', name: '权限管理', icon: 'grade', exact: true, },
     ],
   },
   {

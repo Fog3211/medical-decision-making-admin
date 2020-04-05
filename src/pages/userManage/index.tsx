@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { SearchForm } from '@components/index'
 import { Form, Row, Col, Button, Table, Popconfirm } from 'antd'
-import { searchFormType, authManageItemType } from '@config/type.config'
-import { authManageForm } from '@config/form.config'
-import { authManageColumns } from '@config/table.config'
+import { searchFormType, userManageItemType } from '@config/type.config'
+import { userManageForm } from '@config/form.config'
+import { userManageColumns } from '@config/table.config'
 import styles from './index.less'
 
-export interface AuthManageProps {
+export interface UserManageProps {
 
 }
 
-const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
+const UserManage: React.FC<UserManageProps> = (props: UserManageProps) => {
     const [formConfig, setFormConfig] = useState<searchFormType[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [tableData, setTableData] = useState<authManageItemType[]>([])
+    const [tableData, setTableData] = useState<userManageItemType[]>([])
     const [columns, setColumns] = useState<any[]>([])
     const [pageNo, setPageNo] = useState<number>(1)
     const [pageSize, setPageSize] = useState<number>(20)
@@ -24,7 +24,7 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
 
     // 初始化搜索form
     const initSearchForm = () => {
-        setFormConfig(authManageForm)
+        setFormConfig(userManageForm)
     }
     // 改变当前页号
     const handlePageNoChange = (pageNo: number) => {
@@ -53,10 +53,10 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
     // 初始化表格列
     const initTableColumns = () => {
         const columns = [
-            ...authManageColumns,
+            ...userManageColumns,
             {
                 title: '操作', dataIndex: 'operate', align: 'center', key: 'operate',
-                render: (text, record: authManageItemType) => {
+                render: (text, record: userManageItemType) => {
                     return (
                         <div className={styles['operate-box']}>
                             <Button onClick={() => handleEditAuth(record.id)}>编辑</Button>
@@ -98,7 +98,7 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
                 </Row>
             </Form>
             <Table bordered
-                rowKey={(record: authManageItemType, index) => String(index)}
+                rowKey={(record: userManageItemType, index) => String(index)}
                 pagination={{
                     defaultPageSize: 20,
                     current: pageNo,
@@ -116,4 +116,4 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
     )
 }
 
-export default AuthManage 
+export default UserManage 

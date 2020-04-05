@@ -1,7 +1,7 @@
 const token = window.sessionStorage.getItem('token')
 
 const fetchData: (params: fetchType) => Promise<any> = async (params: fetchType) => {
-  const { type, data } = params
+  const { type = 'GET', data = {} } = params
 
   const requestHeader: RequestInit = {
     cache: 'no-cache',

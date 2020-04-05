@@ -1,5 +1,6 @@
-import { Button, Result } from 'antd';
 import React from 'react'
+import { Button, Result } from 'antd'
+import { Link } from 'react-router-dom'
 
 const NoFound: React.FC<{}> = () => (
     <Result
@@ -7,11 +8,9 @@ const NoFound: React.FC<{}> = () => (
         title="404"
         subTitle="Sorry, the page you visited does not exist."
         extra={
-            <Button type="primary"
-                onClick={() => window.location.href = '#/home'}
-            >
-                回到首页
-      </Button>
+            <Button type="primary">
+                <Link to={'/home'} >回到首页</Link>
+            </Button>
         }
     />
 )

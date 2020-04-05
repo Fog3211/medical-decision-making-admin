@@ -4,9 +4,9 @@ interface anyObj {
 }
 // 请求类型
 interface fetchType {
-    type: 'GET' | 'POST' | 'PUT' | 'DELETE'
+    type?: 'GET' | 'POST' | 'PUT' | 'DELETE'
     url: string
-    data: anyObj
+    data?: anyObj
 }
 // 下拉选择类型
 interface selectType {

@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "admin",
   "version": "1.0.0",
   "description": "辅助医疗决策系统",
   "main": "./src/index.ts",

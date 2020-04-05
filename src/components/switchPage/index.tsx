@@ -27,7 +27,7 @@ const SwitchPage: React.FC<SwitchPageProps> = (props: SwitchPageProps) => {
           render={
             () => (
               <div>
-                <CurrentPath routePath={item.path} />
+                {!item.noBread && <CurrentPath routePath={item.path} />}
                 {/* 组件转UI标签 React.createElement(component, props, ...children) */}
                 {React.createElement(item.template)}
               </div>

@@ -27,10 +27,6 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
     const [form] = Form.useForm()
     const { resetFields, validateFields } = form
 
-    // 初始化搜索form
-    const initSearchForm = () => {
-        setFormConfig(authManageForm)
-    }
     // 改变当前页号
     const handlePageNoChange = (pageNo: number) => {
         setPageNo(pageNo)
@@ -98,7 +94,6 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
     }
 
     useEffect(() => {
-        initSearchForm()
         initTableColumns()
     }, [])
 
@@ -110,7 +105,7 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
         <div className={styles['auth-manage']}>
             <Form form={form}>
                 <Row gutter={24}>
-                    <SearchForm formConfig={formConfig} />
+                    <SearchForm formConfig={authManageForm} />
                     <Col span={7} offset={1}>
                         <Space size={20}>
                             <Button type='primary' onClick={() => getTableData()}>查询</Button>
