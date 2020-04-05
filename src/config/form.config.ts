@@ -1,4 +1,4 @@
-import { searchFormType } from '@config/type.config'
+import { searchFormType, loginTypeConfigType } from '@config/type.config'
 
 //form布局
 export const formItemLayout = {
@@ -24,4 +24,9 @@ export const userManageForm: searchFormType[] = [
     { key: 'phonenumber', label: '手机号', placeholder: '请输入手机号', span: 6, type: 'input', rules: [{ pattern: /^[1]([3-9])[0-9]{9}$/, message: '请填写正确的手机号' }], props: {} },
     { key: 'email', label: '邮箱', placeholder: '请输入邮箱', span: 6, type: 'input', rules: [{ pattern: /^[A-Za-z0-9]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/, message: '请填写正确的邮箱' }], props: {} },
     { key: 'create_time', label: '注册时间', span: 8, type: 'rangePicker', props: { allowClear: true } },
+]
+// 登录form配置
+export const loginTypeConfig: loginTypeConfigType[] = [
+    { key: 'email', label: '邮箱', rules: [{ required: true, whitespace: true, message: '邮箱不能为空' }, { pattern: /^[A-Za-z0-9]+@test-admin.com$/, message: '请填写正确的邮箱' }], placeholder: '请填写邮箱' },
+    { key: 'phonenumber', label: '手机号', rules: [{ required: true, whitespace: true, message: '手机号不能为空' }, { pattern: /^[1]([3-9])[0-9]{9}$/, message: '请填写正确的手机号' }], placeholder: '填写手机号' }
 ]

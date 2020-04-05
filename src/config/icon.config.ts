@@ -1,11 +1,12 @@
 import React from 'react'
 import {
     SmileOutlined, HeartOutlined, TeamOutlined,
-    MailOutlined, SettingOutlined, IdcardOutlined,
-    FireOutlined, AreaChartOutlined, BgColorsOutlined,
-    GlobalOutlined, UserOutlined, DashboardOutlined,
-    CommentOutlined, KeyOutlined, LogoutOutlined,
-    AuditOutlined, ApartmentOutlined
+    MailOutlined, PhoneOutlined, SettingOutlined,
+    IdcardOutlined, FireOutlined, AreaChartOutlined,
+    BgColorsOutlined, GlobalOutlined, UserOutlined,
+    DashboardOutlined, CommentOutlined, KeyOutlined,
+    LogoutOutlined, AuditOutlined, ApartmentOutlined,
+    LockOutlined
 } from '@ant-design/icons'
 
 const IconMap = {
@@ -14,6 +15,7 @@ const IconMap = {
     team: TeamOutlined,
     user: UserOutlined,
     email: MailOutlined,
+    phone: PhoneOutlined,
     setting: SettingOutlined,
     password: IdcardOutlined,
     fire: FireOutlined,
@@ -26,6 +28,7 @@ const IconMap = {
     logout: LogoutOutlined,
     review: AuditOutlined,
     grade: ApartmentOutlined,
+    lock: LockOutlined
 }
 
 Object.keys(IconMap).forEach(item => {

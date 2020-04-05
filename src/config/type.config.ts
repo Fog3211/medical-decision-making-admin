@@ -60,3 +60,10 @@ export type userManageItemType = {
     phonenumber: number
     auth_label: string
 }
+//登录form类型
+export type loginTypeConfigType = {
+    key: string
+    label: string
+    rules: anyObj[]
+    placeholder: string
+}

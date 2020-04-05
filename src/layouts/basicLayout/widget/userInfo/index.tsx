@@ -19,8 +19,10 @@ const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
     // 注销登录
     const handleLogout = () => {
 
+        sessionStorage.clear()
+        window.location.href = '/#login'
     }
-    // 更改语言
+    // 更改语
     const changeLocate = () => {
 
     }

@@ -66,7 +66,8 @@ const AuthCreate: React.FC<AuthCreateProps> = (props: AuthCreateProps) => {
     }, [isCreateAuthShow])
 
     return (
-        <Form className={styles['create-auth']} form={form} {...formItemLayout}>
+        <Form className={styles['create-auth']} form={form} {...formItemLayout}
+            initialValues={{ email: '@test-admin.com' }}>
             <Drawer
                 title="新建后台用户"
                 width={500}
@@ -107,7 +108,7 @@ const AuthCreate: React.FC<AuthCreateProps> = (props: AuthCreateProps) => {
                     <Col span={24}>
                         <Form.Item name='email' label='邮箱' rules={[
                             { required: true, whitespace: true, message: '邮箱不能为空' },
-                            { pattern: /^[A-Za-z0-9]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/, message: '请填写正确的邮箱' }]}>
+                            { pattern: /^[A-Za-z0-9]+@test-admin.com$/, message: '请填写正确的邮箱' }]}>
                             <Input placeholder='请填写邮箱' />
                         </Form.Item>
                     </Col>
