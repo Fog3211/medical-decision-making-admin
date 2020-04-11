@@ -7,10 +7,6 @@ module.exports = merge(common, {
   devtool: 'cheap-module-eval-source-map',
   output: {
     publicPath: '/',
-    library: '[name]',
-    libraryTarget: 'umd',
-    jsonpFunction: `webpackJsonp_feedback`,
-    globalObject: 'this',
   },
   module: {
     rules: [{
@@ -19,9 +15,9 @@ module.exports = merge(common, {
         use: ['style-loader', {
             loader: 'css-loader',
             options: {
-              modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
-              importLoaders: 2,
+              modules: {
+                localIdentName: "[name]__[local]--[hash:base64:5]"
+              },
             },
           },
           {
@@ -37,12 +33,7 @@ module.exports = merge(common, {
         include: /node_modules/,
         use: [
           'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-            },
-          },
+          'css-loader',
           {
             loader: 'less-loader',
             options: {
@@ -65,7 +56,7 @@ module.exports = merge(common, {
     'progress': true,
     'proxy': {
       '/admin': {
-        target: 'http://kf-feedback.sit.hupu.io',
+        target: 'http://localhost:3000',
         pathRewrite: {
           '^/admin': '/admin',
         },

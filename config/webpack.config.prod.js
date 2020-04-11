@@ -14,13 +14,9 @@ const {
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    publicPath: `//w2.hoopchina.com.cn/games/static/${productionName}`,
+    publicPath: `./`,
     path: path.resolve(__dirname, '../build'),
     filename: `js/${productionName}.[hash:8].js`,
-    library: '[name]',
-    libraryTarget: 'umd',
-    jsonpFunction: `webpackJsonp_feedback`,
-    globalObject: 'this',
   },
   module: {
     rules: [{
@@ -31,9 +27,9 @@ module.exports = merge(common, {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
-              importLoaders: 2,
+              modules: {
+                localIdentName: '[hash:base64]',
+              }
             },
           },
           {
@@ -49,12 +45,7 @@ module.exports = merge(common, {
         include: /node_modules/,
         use: [
           'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-            },
-          },
+          'css-loader',
           {
             loader: 'less-loader',
             options: {
@@ -71,7 +62,7 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({
       filename: `css/${productionName}.[hash:8].css`,
       chunkFilename: '[id].css',
-      publicPath: `//w2.hoopchina.com.cn/games/static/${productionName}`,
+      publicPath: `./`,
     }),
   ],
   optimization: {

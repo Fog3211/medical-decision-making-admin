@@ -10,7 +10,7 @@ export type dateType = {
     endTime?: string
 }
 // 搜索form的类型
-export type searchFormItemType = 'input' | 'select' | 'datetime' | 'cascader' | 'rangePicker' | 'textArea'
+export type searchFormItemType = 'input' | 'select' | 'datetime' | 'rangePicker' | 'textArea'
 // 搜索form类型
 export type searchFormType = {
     key: string

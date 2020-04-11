@@ -40,7 +40,7 @@ const SwitchPage: React.FC<SwitchPageProps> = (props: SwitchPageProps) => {
   }
 
   return (
-    <Switch>
+    <Switch >
       {renderRoute(routes)}
     </Switch>
   )
