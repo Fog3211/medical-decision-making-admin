@@ -9,7 +9,7 @@ import IconMap from '@config/icon.config'
 import { userInfoType } from '@config/type.config'
 
 const layoutConfig = {
-  // logo: null,
+  logo: null,
   title: '辅助医疗决策系统',
   // layout: 'topmenu' as any
 }

@@ -29,7 +29,7 @@ const UserManage: React.FC<UserManageProps> = (props: UserManageProps) => {
     // 改变当前页号
     const handlePageNoChange = (pageNo: number) => {
         setPageNo(pageNo)
-    };
+    }
     // 改变分页数量
     const handlePageSizeChange = (pageSize: number) => {
         setPageSize(pageSize)

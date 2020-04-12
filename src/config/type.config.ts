@@ -67,3 +67,10 @@ export type loginTypeConfigType = {
     rules: anyObj[]
     placeholder: string
 }
+//疾病数据管理类型
+export type diseaseDataListType = {
+    id: number
+    handler: string
+    create_time: string
+    diseaseName: string
+}

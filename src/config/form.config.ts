@@ -30,3 +30,10 @@ export const loginTypeConfig: loginTypeConfigType[] = [
     { key: 'email', label: '邮箱', rules: [{ required: true, whitespace: true, message: '邮箱不能为空' }, { pattern: /^[A-Za-z0-9]+@test-admin.com$/, message: '请填写正确的邮箱' }], placeholder: '请填写邮箱' },
     { key: 'phonenumber', label: '手机号', rules: [{ required: true, whitespace: true, message: '手机号不能为空' }, { pattern: /^[1]([3-9])[0-9]{9}$/, message: '请填写正确的手机号' }], placeholder: '填写手机号' }
 ]
+// 疾病管理form配置
+export const diseaseDataForm: searchFormType[] = [
+    { key: 'create_time', label: '创建时间', span: 8, type: 'rangePicker', props: { allowClear: true, showTime: true } },
+    { key: 'department', label: '科室', placeholder: '请选择科室', span: 8, type: 'select', props: { allowClear: true, showSearch: true } },
+    { key: 'diseaseName', label: '疾病名称', placeholder: '请选择疾病名称', span: 8, type: 'select', props: { allowClear: true, showSearch: true } },
+    { key: 'handler', label: '处理人', placeholder: '请选择处理人', span: 8, type: 'select', props: { allowClear: true, showSearch: true } },
+]

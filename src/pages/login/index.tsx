@@ -37,7 +37,6 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
                 } else {
                     message.error(res.msg)
                 }
-                console.log(res)
             })
 
         })
@@ -89,7 +88,7 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
                         <Input.Password prefix={IconMap['lock']} placeholder='请填写密码' />
                     </Form.Item>
                     <Form.Item name='autoLogin' valuePropName='checked'>
-                        <Checkbox>自动登录</Checkbox>
+                        <Checkbox style={{ color: '#fff' }}>自动登录</Checkbox>
                     </Form.Item>
                     <Button type='primary' block htmlType='submit'
                         style={{ letterSpacing: 1 }}>登录系统</Button>
