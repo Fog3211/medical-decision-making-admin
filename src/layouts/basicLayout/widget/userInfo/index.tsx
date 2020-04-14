@@ -1,6 +1,7 @@
 import React from 'react'
 import { Avatar, Dropdown, Menu, Space } from "antd"
 import { userInfoType } from "@config/type.config"
+import { Link } from "react-router-dom"
 import IconMap from '@config/icon.config'
 import styles from './index.less'
 
@@ -39,10 +40,7 @@ const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
             <Dropdown placement="bottomCenter" overlay={
                 <Menu>
                     <Menu.Item onClick={() => changePassword()}>
-                        <span>{IconMap['key']}修改密码</span>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <span onClick={() => changeLocate()}>{IconMap['global']}语言切换</span>
+                        <Link to='/modifyPassword'> {IconMap['key']} 修改密码</Link>
                     </Menu.Item>
                     <Menu.Item>
                         <span onClick={() => changeTheme()}>{IconMap['theme']}自定义主题</span>

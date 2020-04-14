@@ -2,11 +2,14 @@ import React from 'react'
 import { Button, Result } from 'antd'
 import { Link } from 'react-router-dom'
 
-const NoFound: React.FC<{}> = () => (
+export interface NotFoundProps {
+
+}
+const NoFound: React.FC<NotFoundProps> = (props: NotFoundProps) => (
     <Result
         status={404}
         title="404"
-        subTitle="Sorry, the page you visited does not exist."
+        subTitle="糟糕，页面走丢了"
         extra={
             <Button type="primary">
                 <Link to={'/home'} >回到首页</Link>

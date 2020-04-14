@@ -7,7 +7,7 @@ export const menus = [
     children: [
       { path: '/data_statistic', name: '数据统计', icon: 'chart', exact: true, },
       { path: '/disease_data', name: '疾病数据', icon: 'smile', exact: true, },
-      { path: '/ttt', name: '医院数据', icon: 'smile', exact: true, },
+      { path: '/hospital_data', name: '医院数据', icon: 'smile', exact: true, },
     ],
   },
   {
@@ -24,8 +24,7 @@ export const menus = [
     name: '推送管理',
     icon: 'smile',
     children: [
-      { path: '/', name: '医学信息推送', icon: 'smile', exact: true, },
-      { path: '/医学信息推送', name: 'two', icon: 'smile', exact: true, },
+      { path: '/news_push', name: '医学信息推送', icon: 'smile', exact: true, },
     ],
   },
   {
@@ -33,7 +32,7 @@ export const menus = [
     name: '决策管理',
     icon: 'smile',
     children: [
-      { path: '/decision_review', name: '决策审核', icon: 'review', exact: true, },
+      { path: '/decision_audit', name: '决策审核', icon: 'audit', exact: true, },
       { path: '/decision_setting', name: '决策设置', icon: 'setting', exact: true, },
     ],
   },

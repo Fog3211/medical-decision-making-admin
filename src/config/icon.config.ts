@@ -26,9 +26,9 @@ const IconMap = {
     chat: CommentOutlined,
     key: KeyOutlined,
     logout: LogoutOutlined,
-    review: AuditOutlined,
+    audit: AuditOutlined,
     grade: ApartmentOutlined,
-    lock: LockOutlined
+    lock: LockOutlined,
 }
 
 Object.keys(IconMap).forEach(item => {

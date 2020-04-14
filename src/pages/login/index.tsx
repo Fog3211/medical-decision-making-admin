@@ -21,6 +21,7 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
     // 提交表单
     const submitForm = () => {
         validateFields().then(values => {
+            window.location.href = '#/home'
             fetchData({
                 type: 'GET',
                 url: '',

@@ -2,13 +2,15 @@
 export interface anyObj {
     [name: string]: any
 }
-// 主题类型
-export type MenuThemeProps = 'light' | 'dark'
 // 日期类型
 export type dateType = {
     startTime?: string
     endTime?: string
 }
+// 主题设置相关类型
+export type menuLayoutType = 'topmenu' | 'leftmenu'
+export type themeType = 'light' | 'dark'
+
 // 搜索form的类型
 export type searchFormItemType = 'input' | 'select' | 'datetime' | 'rangePicker' | 'textArea'
 // 搜索form类型
@@ -74,3 +76,11 @@ export type diseaseDataListType = {
     create_time: string
     diseaseName: string
 }
+export type themeSettingType = {
+    navTheme: themeType
+    navColor: string
+    navMode: menuLayoutType
+    primaryColor: string
+    colourWeakness: number
+}
+

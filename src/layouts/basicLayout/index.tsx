@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react'
 import ProLayout, { MenuDataItem } from '@ant-design/pro-layout'
 import { Link } from "react-router-dom"
 import { UserInfo } from "./widget/index"
-import { SwitchPage } from '@components/index'
+import { SwitchPage, ThemePicker } from '@components/index'
 import { routes } from '@config/router.config'
 import { menus } from '@config/menu.config'
 import IconMap from '@config/icon.config'
-import { userInfoType } from '@config/type.config'
+import { userInfoType, themeSettingType } from '@config/type.config'
+import { theme } from '@utils/index'
 
 const layoutConfig = {
   logo: null,
   title: '辅助医疗决策系统',
   // layout: 'topmenu' as any
 }
-
 export interface BasicLayoutProps {
 
 }
@@ -21,6 +21,7 @@ export interface BasicLayoutProps {
 const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
   const [pathname, setPathname] = useState('/')
   const [userInfo, setUserInfo] = useState<userInfoType>(null)
+  const [navTheme, setNavTheme] = useState<themeSettingType>({} as any)
 
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
     menus.map(({ icon, children, ...item }) => ({
@@ -50,6 +51,22 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
       }
     })
   }
+  // 更据localstorage设置主题
+  const setThemeByLocalSetting = (themeSetting: themeSettingType) => {
+    if (!themeSetting) return
+
+    Object.keys(themeSetting).forEach((key) => {
+      theme.changeAntdTheme(key, themeSetting[key])
+    })
+    changeNavTheme()
+  }
+  // 设置导航栏主题
+  const changeNavTheme = () => {
+    const navTheme = theme.getCssVarValue("--nav-theme") || 'dark'
+
+    setNavTheme(navTheme)
+  }
+
   useEffect(() => {
     getPathname(menus)
     getUserInfo()
@@ -72,6 +89,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
       rightContentRender={() => <UserInfo userInfo={userInfo} />}
     >
       <SwitchPage routes={routes} />
+      <ThemePicker setThemeByLocalSetting={setThemeByLocalSetting} />
     </ProLayout>
   )
 }

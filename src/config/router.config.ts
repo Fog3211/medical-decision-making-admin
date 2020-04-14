@@ -1,7 +1,9 @@
 import {
   DataStatistic, DiseaseData,
   UserManage, AuthManage,
-  NotFound, Home
+  NotFound, Home, ModifyPassword,
+  NewsPush, DecisionSetting, DecisionAudit,
+  HospitalData
 } from '@pages/index'
 
 export interface routeConfigType {
@@ -31,6 +33,13 @@ const routes: routeConfigType[] = [
     key: 'disease_data'
   },
   {
+    path: '/hospital_data',
+    template: HospitalData,
+    name: '医院数据',
+    exact: true,
+    key: 'hospital_data'
+  },
+  {
     path: '/user_manage',
     template: UserManage,
     name: '用户管理',
@@ -45,11 +54,40 @@ const routes: routeConfigType[] = [
     key: 'auth_manage'
   },
   {
+    path: '/news_push',
+    template: NewsPush,
+    name: '医学知识推送',
+    exact: true,
+    key: 'news_push'
+  },
+  {
+    path: '/decision_audit',
+    template: DecisionAudit,
+    name: '决策审核',
+    exact: true,
+    key: 'decision_audit'
+  },
+  {
+    path: '/decision_setting',
+    template: DecisionSetting,
+    name: '决策管理',
+    exact: true,
+    key: 'decision_setting'
+  },
+  {
     path: '/home',
     template: Home,
     name: '主页',
     exact: true,
     key: 'home'
+  },
+  {
+    path: '/modifyPassword',
+    template: ModifyPassword,
+    name: '修改密码',
+    exact: true,
+    key: 'modifyPassword',
+    noBread: true
   },
   {
     path: '/404',
@@ -62,7 +100,7 @@ const routes: routeConfigType[] = [
   {
     path: '/',
     exact: true,
-    redirect: '/404'
+    redirect: '/home'
   }
 ]
 
