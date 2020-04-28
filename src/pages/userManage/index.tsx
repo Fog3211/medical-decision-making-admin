@@ -10,7 +10,7 @@ export interface UserManageProps {
 
 }
 
-const UserManage: React.FC<UserManageProps> = (props: UserManageProps) => {
+const UserManage: React.FC<UserManageProps> = () => {
     const [formConfig, setFormConfig] = useState<searchFormType[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [tableData, setTableData] = useState<userManageItemType[]>([])

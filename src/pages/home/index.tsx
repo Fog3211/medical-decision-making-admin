@@ -8,7 +8,7 @@ export interface DiseaseDataProps {
 
 }
 
-const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
+const DiseaseData: React.FC<DiseaseDataProps> = () => {
     const [formConfig, setFormConfig] = useState<searchFormType[]>([])
 
     const [form] = Form.useForm()

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export interface NotFoundProps {
 
 }
-const NoFound: React.FC<NotFoundProps> = (props: NotFoundProps) => (
+const NoFound: React.FC<NotFoundProps> = () => (
     <Result
         status={404}
         title="404"

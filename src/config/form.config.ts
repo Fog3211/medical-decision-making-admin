@@ -28,7 +28,7 @@ export const userManageForm: searchFormType[] = [
 // 登录form配置
 export const loginTypeConfig: loginTypeConfigType[] = [
     { key: 'email', label: '邮箱', rules: [{ required: true, whitespace: true, message: '邮箱不能为空' }, { pattern: /^[A-Za-z0-9]+@test-admin.com$/, message: '请填写正确的邮箱' }], placeholder: '请填写邮箱' },
-    { key: 'phonenumber', label: '手机号', rules: [{ required: true, whitespace: true, message: '手机号不能为空' }, { pattern: /^[1]([3-9])[0-9]{9}$/, message: '请填写正确的手机号' }], placeholder: '填写手机号' }
+    { key: 'phonenumber', label: '手机号', rules: [{ required: true, whitespace: true, message: '手机号不能为空' }, { pattern: /^[1]([3-9])[0-9]{9}$/, message: '请填写正确的手机号' }], placeholder: '请填写手机号' }
 ]
 // 疾病管理form配置
 export const diseaseDataForm: searchFormType[] = [
@@ -36,4 +36,12 @@ export const diseaseDataForm: searchFormType[] = [
     { key: 'department', label: '科室', placeholder: '请选择科室', span: 8, type: 'select', props: { allowClear: true, showSearch: true } },
     { key: 'diseaseName', label: '疾病名称', placeholder: '请选择疾病名称', span: 8, type: 'select', props: { allowClear: true, showSearch: true } },
     { key: 'handler', label: '处理人', placeholder: '请选择处理人', span: 8, type: 'select', props: { allowClear: true, showSearch: true } },
+]
+// 修改密码form配置
+export const modifyPasswordForm: searchFormType[] = [
+    { key: 'puid', label: 'puid', type: 'input', props: { disabled: true, placeholder: '用户唯一标识', }, rules: [{ required: true, message: 'puid不能为空' }] },
+    { key: 'username', label: '用户名', type: 'input', props: { placeholder: '请输入用户名', }, rules: [{ required: true, whitespace: true, message: '用户名不能为空' }] },
+    { key: 'password', label: '密码', type: 'input', props: { placeholder: '请输入密码', type: 'password' }, rules: [{ required: true, whitespace: true, message: '用户名不能为空' }, { pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,15}$/, message: '密码必须为6~15位数字字母组合' }], },
+    { key: 'email', label: '邮箱', type: 'input', props: { placeholder: '请填写邮箱', }, rules: [{ required: true, whitespace: true, message: '邮箱不能为空' }, { pattern: /^[A-Za-z0-9]+@test-admin.com$/, message: '请填写正确的邮箱' }] },
+    { key: 'phone_number', label: '手机号', type: 'input', props: { placeholder: '请填写手机号', }, rules: [{ required: true, whitespace: true, message: '手机号不能为空' }, { pattern: /^[1]([3-9])[0-9]{9}$/, message: '请填写正确的手机号' }], },
 ]

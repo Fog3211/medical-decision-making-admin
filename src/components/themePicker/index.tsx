@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import IconMap from '@config/icon.config'
-import { BgColorsOutlined } from '@ant-design/icons'
+import { BgColorsOutlined, SettingOutlined } from '@ant-design/icons'
 import { Switch, Drawer, Divider, Button, Slider, Radio, Popover } from 'antd'
 import { SketchPicker } from 'react-color'
 import { themeSettingType } from '@config/type.config'
@@ -16,6 +15,7 @@ const ThemePicker: React.FC<ThemePickerProps> = (props: ThemePickerProps) => {
 
     const [themeSetting, setThemeSetting] = useState<themeSettingType>(defaultSetting)
     const [isDrawerShow, setIsDrawerShow] = useState<boolean>(false)
+    const [isShowThemeSetting, setIsShowThemeSetting] = useState<boolean>(false)
 
     // 切换抽屉状态
     const switchDrawer = (isDrawerShow: boolean) => {
@@ -65,17 +65,13 @@ const ThemePicker: React.FC<ThemePickerProps> = (props: ThemePickerProps) => {
             handler={
                 <div
                     className={styles["drawer-btn"]}
-                    style={{ backgroundColor: 'var(--primary-color)' }}
+                    style={{ visibility: isShowThemeSetting ? 'hidden' : 'visible' }}
                     onClick={() => switchDrawer(!isDrawerShow)}
                 >
-                    {/* <LegacyIcon
-                        type={isDrawerShow ? 'close' : 'setting'}
-                        style={{
-                            color: '#fff',
-                            fontSize: 20
-                        }}
-                    /> */}
-                    {IconMap['setting']}
+                    <SettingOutlined style={{
+                        color: '#fff',
+                        fontSize: 22
+                    }} />
                 </div>
             }
         >
@@ -110,7 +106,8 @@ const ThemePicker: React.FC<ThemePickerProps> = (props: ThemePickerProps) => {
 
             <div className={styles["nav-theme"]}>
                 <h3>整体风格</h3>
-                <Switch checkedChildren="dark" unCheckedChildren="light" checked={themeSetting.navTheme === 'dark'} onChange={(value) => changeThemeSetting('navTheme', value)} />
+                <Switch checkedChildren="dark" unCheckedChildren="light" checked={themeSetting.navTheme === 'dark'}
+                    onChange={(value) => changeThemeSetting('navTheme', value)} />
                 <Divider />
             </div>
 

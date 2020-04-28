@@ -62,7 +62,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
   }
   // 设置导航栏主题
   const changeNavTheme = () => {
-    const navTheme = theme.getCssVarValue("--nav-theme") || 'dark'
+    const navTheme = theme.getCssVarValue("--nav-theme") || 'dark' as any
 
     setNavTheme(navTheme)
   }

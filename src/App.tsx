@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 // import { BrowserRouter as Router } from "react-router-dom"
 import { HashRouter as Router } from "react-router-dom"
 import { BasicLayout } from "@layouts/index"
@@ -9,6 +9,13 @@ import { Login } from "@pages/index"
 export interface Props { }
 
 export default (props: Props) => {
+  const checkUserAuth = () => {
+
+  }
+  useEffect(() => {
+    checkUserAuth()
+  }, [])
+
   return (
     <Router>
       <Switch>

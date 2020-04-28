@@ -18,7 +18,7 @@ export type searchFormType = {
     key: string
     label: string
     placeholder?: string
-    span: number
+    span?: number
     type: searchFormItemType
     optionRequestUrl?: string
     rules?: anyObj[]
