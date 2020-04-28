@@ -40,6 +40,9 @@
       "@pages/*": [
         "./pages/*"
       ],
+      "@store/*": [
+        "./store/*"
+      ],
       "@styles/*": [
         "./styles/*"
       ],

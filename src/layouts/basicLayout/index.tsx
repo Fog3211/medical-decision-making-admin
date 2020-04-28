@@ -7,7 +7,7 @@ import { routes } from '@config/router.config'
 import { menus } from '@config/menu.config'
 import IconMap from '@config/icon.config'
 import { userInfoType, themeSettingType } from '@config/type.config'
-import { theme } from '@utils/index'
+import { themeUtils } from '@utils/index'
 
 const layoutConfig = {
   logo: null,
@@ -56,13 +56,13 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
     if (!themeSetting) return
 
     Object.keys(themeSetting).forEach((key) => {
-      theme.changeAntdTheme(key, themeSetting[key])
+      themeUtils.changeAntdTheme(key, themeSetting[key])
     })
     changeNavTheme()
   }
   // 设置导航栏主题
   const changeNavTheme = () => {
-    const navTheme = theme.getCssVarValue("--nav-theme") || 'dark' as any
+    const navTheme = themeUtils.getCssVarValue("--nav-theme") || 'dark' as any
 
     setNavTheme(navTheme)
   }

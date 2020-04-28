@@ -1,7 +1,9 @@
 import fetchData from './fetchData'
-import theme from './theme'
+import themeUtils from './theme'
+import lodashUtils from './lodash'
 
 export {
     fetchData,
-    theme
+    themeUtils,
+    lodashUtils
 }

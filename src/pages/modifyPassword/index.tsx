@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Row, Col, Card, Form, Input, message } from 'antd'
+import { Button, Card, Form, Input, message } from 'antd'
 import { FormProps } from 'antd/es/form'
 import { formItemLayout, modifyPasswordForm } from '@config/form.config'
-import styles from './index.less'
 import { fetchData } from '@utils/index'
+import styles from './index.less'
 
 export interface ModifyPasswordProps extends FormProps {
 
