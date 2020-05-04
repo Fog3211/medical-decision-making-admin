@@ -1,28 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { SearchForm } from '@components/index'
-import { Form, Row } from 'antd'
-import { searchFormType } from '@config/type.config'
+import React, { memo } from 'react'
 import styles from './index.less'
 
-export interface DiseaseDataProps {
+export interface HomeProps { }
 
-}
+const Home: React.FC<HomeProps> = memo(() => (
+    <div className={styles['home']}>
+        Welcome
+    </div>
+))
 
-const DiseaseData: React.FC<DiseaseDataProps> = () => {
-    const [formConfig, setFormConfig] = useState<searchFormType[]>([])
-
-    const [form] = Form.useForm()
-    const { resetFields, validateFields } = form
-
-    useEffect(() => {
-
-    }, [])
-
-    return (
-        <div>
-            home
-        </div>
-    )
-}
-
-export default DiseaseData 
+export default Home

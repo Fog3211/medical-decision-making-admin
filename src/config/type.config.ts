@@ -1,53 +1,62 @@
 // 搜索form的类型
-export type searchFormItemType = 'input' | 'select' | 'datetime' | 'rangePicker' | 'textArea'
+export type searchFormItemType = 'input' | 'select' | 'datetime' | 'textArea' | 'timeRange'
 // 搜索form类型
 export type searchFormType = {
-    key: string
-    label: string
-    placeholder?: string
-    span?: number
+    span: number
     type: searchFormItemType
     optionRequestUrl?: string
-    rules?: anyObj[]
     option?: selectType[]
-    props?: anyObj
+    formProps: FormPropsType
+    comProps: ComPropsType
+    filter?: boolean
+}
+export type FormPropsType = {
+    name: string
+    label: string
+    rules?: anyObj[]
+}
+export type ComPropsType = {
+    allowClear?: boolean
+    showSearch?: boolean
+    placeholder?: any
+    showTime?: boolean
+    disabled?: boolean
+    type?: string
 }
 // 下拉选择form选项组合类型
 export type optionistContainer = {
     [name: string]: selectType[]
 }
-//权限管理列表类型
-export type authManageItemType = {
+//后台人员管理列表类型
+export type adminerManageItemType = {
     id: number
-    puid: number
-    username: string
+    name: string
     telphone: number
     auth_label: string
 }
-//权限管理列表类型
-export type authRecordType = {
+//后台人员管理列表类型
+export type adminerRecordType = {
     id: number
-    puid: number
     name: string
     telphone: number
     email: string
-    create_time: string
-    auth_code: number
-    is_forbidden: boolean
+    createAt: string
+    auth: number
+    password: string
 }
 // 用户信息类型
 export type userInfoType = {
-    username: string
+    name: string
     isLogin: boolean
     avatar: string
 }
 //权限管理列表类型
 export type userManageItemType = {
-    id: number
-    puid: number
-    username: string
+    id: string
+    name: string
     telphone: number
-    auth_label: string
+    auth: string
+    isForbidden: boolean
 }
 //登录form类型
 export type loginTypeConfigType = {
@@ -60,14 +69,15 @@ export type loginTypeConfigType = {
 export type diseaseDataListType = {
     id: number
     handler: string
-    create_time: string
+    createat: string
     diseaseName: string
+    diseaseCode: string
 }
 //医院数据管理类型
 export type hospitalDataListType = {
     id: number
     handler: string
-    create_time: string
+    createat: string
     hospitalName: string
 }
 // 主题设置

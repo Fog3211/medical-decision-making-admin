@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { SearchForm } from '@components/index'
-import { Form, Row, Col, Space, Button, Table, Popconfirm, Tag } from 'antd'
-import { searchFormType, authManageItemType } from '@config/type.config'
-import { authManageForm } from '@config/form.config'
-import { authManageColumns } from '@config/table.config'
-import { AuthEdit, AuthCreate } from './widget/index'
+import { Form, Row, Col, Space, Button, Table, Popconfirm, Tag, message } from 'antd'
+import { searchFormType, adminerManageItemType } from '@config/type.config'
+import { adminerManageForm } from '@config/form.config'
+import { adminerManageColumns } from '@config/table.config'
+import { AdminerEdit, AdminerCreate } from './widget/index'
 import { PlusOutlined } from '@ant-design/icons'
+import { fetchData } from '@utils/index'
+import { ADMINER_MANAGE } from '@config/api.config'
 import styles from './index.less'
 
-export interface AuthManageProps {
+export interface AdminerManageProps { }
 
-}
-
-const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
+const AdminerManage: React.FC<AdminerManageProps> = (props) => {
     const [formConfig, setFormConfig] = useState<searchFormType[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [tableData, setTableData] = useState<authManageItemType[]>([])
+    const [tableData, setTableData] = useState<adminerManageItemType[]>([])
     const [columns, setColumns] = useState<any[]>([])
     const [pageNo, setPageNo] = useState<number>(1)
     const [pageSize, setPageSize] = useState<number>(20)
     const [totalSize, setTotalSize] = useState<number>(0)
     const [currentRecordId, setCurrentRecordId] = useState<number>(0)
-    const [isEditAuthShow, setIsEditAuthShow] = useState<boolean>(false)
-    const [isCreateAuthShow, setIsCreateAuthShow] = useState<boolean>(false)
+    const [isEditAdminerShow, setIsEditAdminerShow] = useState<boolean>(false)
+    const [isCreateAdminerShow, setIsCreateAdminerShow] = useState<boolean>(false)
 
     const [form] = Form.useForm()
     const { resetFields, validateFields } = form
@@ -41,60 +41,69 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
     }
     // 获取数据
     const getTableData = () => {
-        const data = [
-            {
-                id: 1,
-                telphone: 1738122,
-                username: 'fog3211',
-                puid: 222,
-                auth_label: '系统管理员',
-                create_time: '2020-08-09 22:00:03'
-            }
-        ] as any
-        setTableData(data)
+        clearTableData()
+        setIsLoading(true)
         validateFields().then(values => {
-            console.log(values)
-        }).catch()
+            fetchData({
+                url: ADMINER_MANAGE,
+                type: 'GET',
+                data: values
+            }).then(res => {
+                setIsLoading(false)
+                setTableData(res.result?.data)
+                setTotalSize(res.result?.count)
+            })
+        })
     }
     // 删除当前行的权限
-    const handleDeleteAuth = (id: number) => {
-        getTableData()
+    const handleDeleteAdminer = (id: number) => {
+        fetchData({
+            url: `${ADMINER_MANAGE}/${id}`,
+            type: 'DELETE'
+        }).then(() => {
+            message.success('删除成功')
+            getTableData()
+        })
     }
     // 编辑当前行的数据
-    const handleEditAuth = (id: number) => {
+    const handleEditAdminer = (id: number) => {
         setCurrentRecordId(id)
-        setIsEditAuthShow(true)
+        setIsEditAdminerShow(true)
     }
     // 初始化表格列
     const initTableColumns = () => {
         const columns = [
-            ...authManageColumns,
+            ...adminerManageColumns,
             {
                 title: '操作', dataIndex: 'operate', align: 'center', key: 'operate',
-                render: (text, record: authManageItemType) => {
+                render: (text, record: adminerManageItemType) => {
                     return (
-                        <div className={styles['operate-box']}>
+                        <Space className={styles['operate-box']} size={10}>
                             <Tag color='var(--success-color)'
-                                onClick={() => handleEditAuth(record.id)}>编辑</Tag>
+                                onClick={() => handleEditAdminer(record.id)}>编辑</Tag>
                             <Popconfirm
                                 title="确定删除该用户的权限?"
-                                onConfirm={() => handleDeleteAuth(record.id)}
+                                onConfirm={() => handleDeleteAdminer(record.id)}
                                 okText="是"
                                 cancelText="否"
                             >
-                                <Tag color='var(--danger-color)'
-                                    onClick={() => handleDeleteAuth(record.id)}>删除</Tag>
+                                <Tag color='var(--danger-color)'>删除</Tag>
                             </Popconfirm>
-                        </div>
+                        </Space>
                     )
                 }
             }
         ]
         setColumns(columns)
     }
+    // 初始化搜索form
+    const initSearchForm = () => {
+        setFormConfig(adminerManageForm)
+    }
 
     useEffect(() => {
         initTableColumns()
+        initSearchForm()
     }, [])
 
     useEffect(() => {
@@ -102,23 +111,23 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
     }, [pageNo, pageSize])
 
     return (
-        <div className={styles['auth-manage']}>
+        <div className={styles['adminer-manage']}>
             <Form form={form}>
                 <Row gutter={24}>
-                    <SearchForm formConfig={authManageForm} />
+                    <SearchForm formConfig={formConfig} />
                     <Col span={7} offset={1}>
                         <Space size={20}>
                             <Button type='primary' onClick={() => getTableData()}>查询</Button>
                             <Button onClick={() => resetFields()}>重置</Button>
                             <Button type='dashed' icon={<PlusOutlined />}
-                                onClick={() => setIsCreateAuthShow(true)}
+                                onClick={() => setIsCreateAdminerShow(true)}
                             >新建用户</Button>
                         </Space>
                     </Col>
                 </Row>
             </Form>
             <Table bordered
-                rowKey={(record: authManageItemType, index) => String(index)}
+                rowKey={(record: adminerManageItemType, index: number) => String(index)}
                 pagination={{
                     defaultPageSize: 20,
                     current: pageNo,
@@ -133,16 +142,16 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
                 columns={columns}
                 dataSource={tableData} />
             {/* 编辑用户权限 */}
-            <AuthEdit currentRecordId={currentRecordId}
-                isEditAuthShow={isEditAuthShow}
-                closeAuthEdit={() => setIsEditAuthShow(false)}
+            <AdminerEdit currentRecordId={currentRecordId}
+                isEditAdminerShow={isEditAdminerShow}
+                closeAdminerEdit={() => setIsEditAdminerShow(false)}
                 getTableData={() => getTableData()} />
             {/* 新建用户 */}
-            <AuthCreate isCreateAuthShow={isCreateAuthShow}
-                closeAuthCreate={() => setIsCreateAuthShow(false)}
+            <AdminerCreate isCreateAdminerShow={isCreateAdminerShow}
+                closeAdminerCreate={() => setIsCreateAdminerShow(false)}
                 getTableData={() => getTableData()} />
         </div>
     )
 }
 
-export default AuthManage 
+export default AdminerManage 

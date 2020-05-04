@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Button, Card, Form, Input, message } from 'antd'
+import { Button, Card, Form, message } from 'antd'
 import { FormProps } from 'antd/es/form'
+import { SearchForm } from '@components/index'
 import { formItemLayout, modifyPasswordForm } from '@config/form.config'
 import { AUTH_MANAGE } from '@config/api.config'
 import { GlobalContext } from '@store/index'
@@ -23,7 +24,7 @@ const ModifyPassword: React.FC<ModifyPasswordProps> = (props) => {
     const submitForm = (values: anyObj) => {
         fetchData({
             type: 'PUT',
-            url: AUTH_MANAGE,
+            url: `${AUTH_MANAGE}/${id}`,
             data: {
                 ...values,
                 password: encryptionUtils.encrypt(values.password)
@@ -35,19 +36,28 @@ const ModifyPassword: React.FC<ModifyPasswordProps> = (props) => {
     }
     // 填充表单的值
     const initFormValues = (values: anyObj) => {
-        setFieldsValue(values)
+        const result = {
+            ...values,
+            password: encryptionUtils.decrypt(values.password)
+        }
+        setFieldsValue(result)
     }
     // 获取用户信息
     const getUserInfo = () => {
+        if (!id) {
+            message.error('请先登录')
+            return
+        }
         fetchData({
             type: 'GET',
-            url: AUTH_MANAGE,
-            data: {
-                id
-            },
+            url: `${AUTH_MANAGE}/${id}`,
         }).then((res) => {
             initFormValues(res.result)
         })
+    }
+    // 清空表单
+    const clearFormValues = () => {
+        resetFields(['name', 'email', 'telphone', 'password'])
     }
 
     useEffect(() => {
@@ -59,16 +69,10 @@ const ModifyPassword: React.FC<ModifyPasswordProps> = (props) => {
         <Form className={styles['modify-password']} {...formItemLayout}
             onFinish={submitForm} form={form}>
             <Card title='个人账户' style={{ width: 600 }}>
-                {
-                    formConfig.map((item, index: number) => (
-                        <Form.Item name={item.key} label={item.label} key={index} rules={item.rules}>
-                            <Input {...item.props} />
-                        </Form.Item>
-                    ))
-                }
+                <SearchForm formConfig={formConfig} />
                 <Form.Item style={{ margin: '0 auto', textAlign: 'center', width: '100%' }}>
                     <Button type='primary' htmlType='submit'>保存</Button>
-                    <Button style={{ marginLeft: 40 }} onClick={() => resetFields()}>重置</Button>
+                    <Button style={{ marginLeft: 40 }} onClick={() => clearFormValues()}>重置</Button>
                 </Form.Item>
             </Card>
         </Form>

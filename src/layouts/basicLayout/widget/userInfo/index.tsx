@@ -10,7 +10,7 @@ export interface UserInfoProps {
 }
 // 默认用户信息
 const defaultInfo: userInfoType = {
-    username: '未登录',
+    name: '未登录',
     avatar: '',
     isLogin: false
 }
@@ -23,23 +23,16 @@ const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
         sessionStorage.clear()
         window.location.href = '/#login'
     }
-    // 更改语
-    const changeLocate = () => {
-
-    }
     // 切换主题
     const changeTheme = () => {
 
     }
-    // 修改密码
-    const changePassword = () => {
 
-    }
     return (
         <div className={styles['user-info']}>
             <Dropdown placement="bottomCenter" overlay={
                 <Menu>
-                    <Menu.Item onClick={() => changePassword()}>
+                    <Menu.Item>
                         <Link to='/modifyPassword'> {IconMap['key']} 修改密码</Link>
                     </Menu.Item>
                     <Menu.Item>
@@ -50,7 +43,7 @@ const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
                     </Menu.Item>
                 </Menu>}>
                 <Space className={styles['avatar-box']} size={10}>
-                    <span>{userInfo.username || defaultInfo.username}</span>
+                    <span>{userInfo.name || defaultInfo.name}</span>
                     <Avatar src={userInfo.avatar || defaultInfo.avatar} />
                 </Space>
             </Dropdown>

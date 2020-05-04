@@ -4,16 +4,14 @@ import { Form, Row, Col, Space, Button, Table, Popconfirm, message, Tag } from '
 import { diseaseDataForm } from '@config/form.config'
 import { diseaseDataColumns } from '@config/table.config'
 import { searchFormType, diseaseDataListType } from '@config/type.config'
-import { } from '@config/api.config'
+import { DISEASE_MANAGE } from '@config/api.config'
 import { fetchData } from '@utils/index'
 import { PlusOutlined } from '@ant-design/icons'
 import styles from './index.less'
 
-export interface DiseaseDataProps {
+export interface DiseaseDataProps { }
 
-}
-
-const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
+const DiseaseData: React.FC<DiseaseDataProps> = (props) => {
     const [formConfig, setFormConfig] = useState<searchFormType[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [tableData, setTableData] = useState<diseaseDataListType[]>([])
@@ -28,27 +26,19 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
     // 获取表格数据
     const getTableData = () => {
         validateFields().then(values => {
-            console.log(values)
-            // setIsLoading(true)
-            const data = [{
-                id: 1,
-                diseaseName: '高血压',
-                diseaseCode: 'G339820',
-                handler: 'fog3211',
-                create_time: 'asdsa',
-                symptom: '头痛，胸闷',
-                department: '内科',
-                tag: ['三高', '高血压']
-            }] as any
-            setTableData(data)
+            setIsLoading(true)
             fetchData({
                 type: 'GET',
-                url: '',
+                url: DISEASE_MANAGE,
                 data: {
-
+                    ...values,
+                    pageNo,
+                    pageSize
                 }
             }).then(res => {
                 setIsLoading(false)
+                setTableData(res.result.data)
+                setTotalSize(res.result.count)
             })
         })
     }

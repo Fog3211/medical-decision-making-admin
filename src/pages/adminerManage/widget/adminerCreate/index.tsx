@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Row, Col, Drawer, Form, message, Select, Input } from 'antd'
-import { } from '@config/api.config'
+import { AUTH_MANAGE } from '@config/api.config'
 import { formItemLayout } from '@config/form.config'
 import { fetchData } from '@utils/index'
 import styles from './index.less'
 
 const { Option } = Select
 
-export interface AuthCreateProps {
-    isCreateAuthShow: boolean
-    closeAuthCreate: Function
+export interface AdminerCreateProps {
+    isCreateAdminerShow: boolean
+    closeAdminerCreate: Function
     getTableData: Function
 }
 
-const AuthCreate: React.FC<AuthCreateProps> = (props: AuthCreateProps) => {
-    const { isCreateAuthShow, closeAuthCreate, getTableData } = props
+const AdminerCreate: React.FC<AdminerCreateProps> = (props: AdminerCreateProps) => {
+    const { isCreateAdminerShow, closeAdminerCreate, getTableData } = props
 
-    const [authCodeList, setAuthCodeList] = useState<selectType[]>([])
+    const [adminerCodeList, setAdminerCodeList] = useState<selectType[]>([])
 
     const [form] = Form.useForm()
     const { validateFields, resetFields } = form
@@ -38,44 +38,38 @@ const AuthCreate: React.FC<AuthCreateProps> = (props: AuthCreateProps) => {
         })
     }
     // 初始化权限类型列表
-    const initAuthCodeList = () => {
-        const list = [
-            {
-                id: 1,
-                name: '系统管理员',
-            },
-            {
-                id: 2,
-                name: '医学编辑',
-            }
-        ] as any
-        setAuthCodeList(list)
+    const initAdminerCodeList = () => {
+        fetchData({
+            url: AUTH_MANAGE,
+        }).then(res => {
+            setAdminerCodeList(res.result.data)
+        })
     }
 
     useEffect(() => {
-        if (isCreateAuthShow) {
-            initAuthCodeList()
+        if (isCreateAdminerShow) {
+            initAdminerCodeList()
         } else {
             resetFields()
         }
-    }, [isCreateAuthShow])
+    }, [isCreateAdminerShow])
 
     return (
-        <Form className={styles['create-auth']} form={form} {...formItemLayout}
+        <Form className={styles['create-adminer']} form={form} {...formItemLayout}
             initialValues={{ email: '@test-admin.com' }}>
             <Drawer
                 title="新建后台用户"
                 width={500}
                 destroyOnClose
-                onClose={() => closeAuthCreate()}
-                visible={isCreateAuthShow}
+                onClose={() => closeAdminerCreate()}
+                visible={isCreateAdminerShow}
                 footer={
                     <Row justify='end'>
                         <Col pull={2}>
                             <Button type='primary' onClick={() => handleSubmitForm()}>确认完成</Button>
                         </Col>
                         <Col pull={1}>
-                            <Button onClick={() => closeAuthCreate()}>取消操作</Button>
+                            <Button onClick={() => closeAdminerCreate()}>取消操作</Button>
                         </Col>
                     </Row>
                 }>
@@ -108,10 +102,10 @@ const AuthCreate: React.FC<AuthCreateProps> = (props: AuthCreateProps) => {
                         </Form.Item>
                     </Col>
                     <Col span={24}>
-                        <Form.Item name='auth_code' label='权限类型' rules={[{ required: true, message: '请选择权限类型' }]}>
+                        <Form.Item name='adminer_code' label='权限类型' rules={[{ required: true, message: '请选择权限类型' }]}>
                             <Select placeholder='请选择权限类型'>
                                 {
-                                    authCodeList.map((item: selectType, index: number) => (
+                                    adminerCodeList.map((item: selectType, index: number) => (
                                         <Option key={index} value={item.id}>{item.name}</Option>
                                     ))
                                 }
@@ -124,4 +118,4 @@ const AuthCreate: React.FC<AuthCreateProps> = (props: AuthCreateProps) => {
     )
 }
 
-export default AuthCreate
+export default AdminerCreate

@@ -26,28 +26,21 @@ const HospitalData: React.FC<HospitalDataProps> = (props) => {
     // 获取表格数据
     const getTableData = () => {
         validateFields().then(values => {
-            console.log(values)
             clearTableData()
             setIsLoading(true)
-            const data = [{
-                id: 1,
-                HospitalName: '高血压',
-                HospitalCode: 'G339820',
-                handler: 'fog3211',
-                create_time: 'asdsa',
-                symptom: '头痛，胸闷',
-                department: '内科',
-                tag: ['三高', '高血压']
-            }] as any
-            setTableData(data)
+
             fetchData({
                 type: 'GET',
-                url: '',
+                url: HOSPITAL_MANAGE,
                 data: {
-
+                    ...values,
+                    pageNo,
+                    pageSize,
                 }
             }).then(res => {
                 setIsLoading(false)
+                setTableData(res.result?.data)
+                setTotalSize(res.result?.count)
             })
         })
     }
@@ -116,7 +109,6 @@ const HospitalData: React.FC<HospitalDataProps> = (props) => {
         })
     }
 
-
     useEffect(() => {
         initSearchForm()
         initTableColumns()
@@ -141,7 +133,7 @@ const HospitalData: React.FC<HospitalDataProps> = (props) => {
                 </Row>
             </Form>
             <Table bordered className={styles['hospital-data-list']}
-                rowKey={(record: hospitalDataListType, index) => String(index)}
+                rowKey={(record: hospitalDataListType, index: number) => String(index)}
                 pagination={{
                     defaultPageSize: 20,
                     current: pageNo,

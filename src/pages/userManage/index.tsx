@@ -5,6 +5,7 @@ import { searchFormType, userManageItemType } from '@config/type.config'
 import { userManageForm } from '@config/form.config'
 import { userManageColumns } from '@config/table.config'
 import { USER_MANAGE } from '@config/api.config'
+import { UserDetail } from './widget/index'
 import { fetchData } from '@utils/index'
 import styles from './index.less'
 
@@ -18,6 +19,8 @@ const UserManage: React.FC<UserManageProps> = () => {
     const [pageNo, setPageNo] = useState<number>(1)
     const [pageSize, setPageSize] = useState<number>(20)
     const [totalSize, setTotalSize] = useState<number>(0)
+    const [isUserDetailShow, setIsUserDetailShow] = useState<boolean>(false)
+    const [currentRecordId, setCurrentRecordId] = useState<string>(null)
 
     const [form] = Form.useForm()
     const { resetFields, validateFields } = form
@@ -41,7 +44,9 @@ const UserManage: React.FC<UserManageProps> = () => {
             fetchData({
                 url: USER_MANAGE,
                 data: {
-                    ...values
+                    ...values,
+                    pageNo,
+                    pageSize,
                 }
             }).then(res => {
                 setIsLoading(false)
@@ -50,18 +55,20 @@ const UserManage: React.FC<UserManageProps> = () => {
             })
         })
     }
-    // 删除当前行的权限
-    const handleDeleteUser = (id: number) => {
+    // 封禁用户
+    const handleForbiddenUser = (id: string) => {
         fetchData({
             url: `${USER_MANAGE}/${id}`,
             type: 'DELETE'
         }).then(() => {
-            message.success('删除成功')
+            message.success('封禁/解封成功')
             getTableData()
         })
     }
-    // 编辑当前行的数据
-    const handleEditUser = (id: number) => {
+    // 查看详细信息
+    const showUserDetail = (id: string) => {
+        setCurrentRecordId(id)
+        setIsUserDetailShow(true)
     }
     // 初始化表格列
     const initTableColumns = () => {
@@ -72,16 +79,28 @@ const UserManage: React.FC<UserManageProps> = () => {
                 render: (text, record: userManageItemType) => {
                     return (
                         <div className={styles['operate-box']}>
-                            <Button onClick={() => handleEditUser(record.id)} size='small'>查看</Button>
-                            <Popconfirm
-                                title="确定删除本行所在人员的权限?"
-                                onConfirm={() => handleDeleteUser(record.id)}
-                                okText="是"
-                                cancelText="否"
-                            >
-                                <Button type='primary' danger size='small'
-                                    style={{ marginLeft: 20, fontSize: 12 }} >禁用</Button>
-                            </Popconfirm>
+                            <Button onClick={() => showUserDetail(record.id)} size='small'>查看</Button>
+                            {
+                                record.isForbidden ?
+                                    <Popconfirm
+                                        title="确定解禁该用户?"
+                                        onConfirm={() => handleForbiddenUser(record.id)}
+                                        okText="是"
+                                        cancelText="否"
+                                    >
+                                        <Button type='primary' size='small'
+                                            style={{ marginLeft: 20, fontSize: 12 }} >解禁</Button>
+                                    </Popconfirm> :
+                                    <Popconfirm
+                                        title="确定封禁该用户?"
+                                        onConfirm={() => handleForbiddenUser(record.id)}
+                                        okText="是"
+                                        cancelText="否"
+                                    >
+                                        <Button type='primary' danger size='small'
+                                            style={{ marginLeft: 20, fontSize: 12 }} >封禁</Button>
+                                    </Popconfirm>
+                            }
                         </div>
                     )
                 }
@@ -100,7 +119,7 @@ const UserManage: React.FC<UserManageProps> = () => {
     }, [pageNo, pageSize])
 
     return (
-        <div className={styles['User-manage']}>
+        <div className={styles['user-manage']}>
             <Form form={form}>
                 <Row gutter={24}>
                     <SearchForm formConfig={formConfig} />
@@ -111,7 +130,7 @@ const UserManage: React.FC<UserManageProps> = () => {
                 </Row>
             </Form>
             <Table bordered
-                rowKey={(record: userManageItemType, index) => String(index)}
+                rowKey={(record: userManageItemType, index: number) => String(index)}
                 pagination={{
                     defaultPageSize: 20,
                     current: pageNo,
@@ -125,6 +144,10 @@ const UserManage: React.FC<UserManageProps> = () => {
                 loading={isLoading}
                 columns={columns}
                 dataSource={tableData} />
+            {/* 查看用户详细信息 */}
+            <UserDetail isUserDetailShow={isUserDetailShow}
+                currentRecordId={currentRecordId}
+                closeUserDetail={() => setIsUserDetailShow(false)} />
         </div>
     )
 }

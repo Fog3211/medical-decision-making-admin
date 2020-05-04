@@ -1,5 +1,5 @@
 import DataStatistic from "./dataStatistic"
-import AuthManage from "./authManage"
+import AdminerManage from "./adminerManage"
 import UserManage from "./userManage"
 import DiseaseData from "./diseaseData"
 import Login from "./login"
@@ -13,7 +13,8 @@ import DecisionAudit from "./decisionAudit"
 
 export {
     DataStatistic,
-    AuthManage, UserManage,
+    AdminerManage,
+    UserManage,
     DiseaseData,
     Login,
     Home,

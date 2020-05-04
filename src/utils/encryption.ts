@@ -1,5 +1,6 @@
-import md5 from 'crypto-js/md5'
+import CryptoJS from 'crypto-js'
 
 export default {
-    encrypt: (value: string) => md5(value).toString()
+    encrypt: (value: string) => value,
+    decrypt: (value: string) => value
 }

@@ -1,6 +1,6 @@
 import {
   DataStatistic, DiseaseData,
-  UserManage, AuthManage,
+  UserManage, AdminerManage,
   NotFound, Home, ModifyPassword,
   NewsPush, DecisionSetting, DecisionAudit,
   HospitalData
@@ -47,11 +47,11 @@ const routes: routeConfigType[] = [
     key: 'user'
   },
   {
-    path: '/auth',
-    template: AuthManage,
-    name: '权限管理',
+    path: '/adminer',
+    template: AdminerManage,
+    name: '后台人员管理',
     exact: true,
-    key: 'auth'
+    key: 'adminer'
   },
   {
     path: '/news',
@@ -79,7 +79,8 @@ const routes: routeConfigType[] = [
     template: Home,
     name: '主页',
     exact: true,
-    key: 'home'
+    key: 'home',
+    noBread: true
   },
   {
     path: '/modifyPassword',

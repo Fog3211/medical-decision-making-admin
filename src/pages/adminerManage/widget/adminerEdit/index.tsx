@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Row, Col, Drawer, Modal, Switch, Form, message, Select, Input } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
-import { authRecordType } from '@config/type.config'
-import { } from '@config/api.config'
+import { adminerRecordType } from '@config/type.config'
+import { AUTH_MANAGE, ADMINER_MANAGE } from '@config/api.config'
 import { formItemLayout } from '@config/form.config'
-import { fetchData } from '@utils/index'
+import { fetchData, encryptionUtils } from '@utils/index'
 import styles from './index.less'
 
 const { confirm } = Modal
 const { Option } = Select
 
-export interface AuthEditProps {
+export interface AdminerEditProps {
     currentRecordId: number
-    isEditAuthShow: boolean
-    closeAuthEdit: Function
+    isEditAdminerShow: boolean
+    closeAdminerEdit: Function
     getTableData: Function
 }
 
-const AuthEdit: React.FC<AuthEditProps> = (props: AuthEditProps) => {
-    const { currentRecordId, isEditAuthShow, closeAuthEdit, getTableData } = props
+const AdminerEdit: React.FC<AdminerEditProps> = (props: AdminerEditProps) => {
+    const { currentRecordId, isEditAdminerShow, closeAdminerEdit, getTableData } = props
 
-    const [authCodeList, setAuthCodeList] = useState<selectType[]>([])
+    const [adminerCodeList, setAdminerCodeList] = useState<selectType[]>([])
 
     const [form] = Form.useForm()
     const { validateFields, setFieldsValue, resetFields } = form
@@ -36,98 +36,76 @@ const AuthEdit: React.FC<AuthEditProps> = (props: AuthEditProps) => {
         })
     }
     // 确认完成
-    const handleSubmitForm = (values: authRecordType) => {
-        console.log(values)
+    const handleSubmitForm = (values: adminerRecordType) => {
         fetchData({
-            type: 'GET',
-            url: '',
+            type: 'POST',
+            url: ADMINER_MANAGE,
             data: {
-                values
+                ...values,
+                password: encryptionUtils.encrypt(values.password)
             },
-        }).then(res => {
-            if (res.code === 200) {
-                message.success('操作成功')
-                getTableData()
-            } else {
-                message.error(res.msg)
-            }
-            console.log(res)
+        }).then(() => {
+            message.success('操作成功')
+            getTableData()
         })
     }
     // 获取权限数据详情
     const getCurrentRecord = (id: number) => {
-        // fetchData({
-        //     type: 'GET',
-        //     url: '',
-        //     data: {
-
-        //     },
-        // }).then(res => {
-        //     if (res.code === 200) {
-        //         handleFormFixed(res.data)
-        //     } else {
-        //         message.error(res.msg)
-        //     }
-        //     console.log(res)
-        // })
-        const record = {
-            id: 1,
-            name: 'fogaaa',
-            password: 'adsadalk',
-            auth_code: 2,
-            is_forbidden: false
-        } as any
-        handleFormFixed(record)
+        if (!id) {
+            message.error('获取用户信息出错！')
+            return
+        }
+        fetchData({
+            url: `${ADMINER_MANAGE}/${id}`,
+        }).then(res => handleFormFixed(res.result))
     }
     // 填充表单
-    const handleFormFixed = (data: authRecordType) => {
-        setFieldsValue(data)
+    const handleFormFixed = (values: adminerRecordType) => {
+        const result = {
+            ...values,
+            password: encryptionUtils.decrypt(values.password)
+        }
+        setFieldsValue(result)
     }
     // 初始化权限类型列表
-    const initAuthCodeList = () => {
-        const list = [
-            {
-                id: 1,
-                name: '系统管理员',
-            },
-            {
-                id: 2,
-                name: '医学编辑',
-            }
-        ] as any
-        setAuthCodeList(list)
+    const initAdminerCodeList = () => {
+        fetchData({
+            url: AUTH_MANAGE,
+        }).then(res => {
+            setAdminerCodeList(res.result?.data)
+        })
     }
 
     useEffect(() => {
-        if (isEditAuthShow) {
-            initAuthCodeList()
+        if (isEditAdminerShow) {
+            initAdminerCodeList()
             getCurrentRecord(currentRecordId)
         } else {
             resetFields()
         }
-    }, [isEditAuthShow])
+    }, [isEditAdminerShow])
 
     return (
-        <Form className={styles['edit-auth']} form={form} {...formItemLayout}>
+        <Form className={styles['edit-adminer']} form={form} {...formItemLayout}>
             <Drawer
                 title="用户权限编辑"
                 width={500}
                 destroyOnClose
-                onClose={() => closeAuthEdit()}
-                visible={isEditAuthShow}
+                onClose={() => closeAdminerEdit()}
+                visible={isEditAdminerShow}
                 footer={
                     <Row justify='end'>
                         <Col pull={2}>
                             <Button type='primary' onClick={() => beforeSubmit()}>确认完成</Button>
                         </Col>
                         <Col pull={1}>
-                            <Button onClick={() => closeAuthEdit()}>取消操作</Button>
+                            <Button onClick={() => closeAdminerEdit()}>取消操作</Button>
                         </Col>
                     </Row>
                 }>
                 <Row className={styles['form-box']}>
                     <Col span={24}>
-                        <Form.Item name='username' label='用户名' >
+                        <Form.Item name='name' label='用户名' >
                             <Input placeholder='请填写用户名' disabled />
                         </Form.Item>
                     </Col>
@@ -139,19 +117,14 @@ const AuthEdit: React.FC<AuthEditProps> = (props: AuthEditProps) => {
                         </Form.Item>
                     </Col>
                     <Col span={24}>
-                        <Form.Item name='auth_code' label='权限类型' rules={[{ required: true, message: '请选择权限类型' }]}>
+                        <Form.Item name='auth' label='权限类型' rules={[{ required: true, message: '请选择权限类型' }]}>
                             <Select placeholder='请选择权限类型'>
                                 {
-                                    authCodeList.map((item: selectType, index: number) => (
+                                    adminerCodeList.map((item: selectType, index: number) => (
                                         <Option key={index} value={item.id}>{item.name}</Option>
                                     ))
                                 }
                             </Select>
-                        </Form.Item>
-                    </Col>
-                    <Col span={24}>
-                        <Form.Item name='is_forbidden' label='是否禁用' valuePropName='checked'>
-                            <Switch checkedChildren="禁用" unCheckedChildren="关闭" />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -160,4 +133,4 @@ const AuthEdit: React.FC<AuthEditProps> = (props: AuthEditProps) => {
     )
 }
 
-export default AuthEdit
+export default AdminerEdit
