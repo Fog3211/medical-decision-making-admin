@@ -30,7 +30,7 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
     // 改变当前页号
     const handlePageNoChange = (pageNo: number) => {
         setPageNo(pageNo)
-    };
+    }
     // 改变分页数量
     const handlePageSizeChange = (pageSize: number) => {
         setPageSize(pageSize)
@@ -44,7 +44,7 @@ const AuthManage: React.FC<AuthManageProps> = (props: AuthManageProps) => {
         const data = [
             {
                 id: 1,
-                phonenumber: 1738122,
+                telphone: 1738122,
                 username: 'fog3211',
                 puid: 222,
                 auth_label: '系统管理员',

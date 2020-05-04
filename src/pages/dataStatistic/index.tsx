@@ -3,7 +3,6 @@ import { SearchForm } from '@components/index'
 import { Form, Row } from 'antd'
 import { searchFormType } from '@config/type.config'
 import { Chart, Axis, Tooltip, Legend } from 'bizcharts'
-import Interval from 'bizcharts/lib/components/TypedGeom/Interval'
 import styles from './index.less'
 
 export interface DataStatisticProps {
@@ -48,11 +47,7 @@ const DataStatistic: React.FC<DataStatisticProps> = (props: DataStatisticProps) 
                     <Chart width={600} height={400} data={dataSource} scale={cols}>
                         <Axis name="genre" title />
                         <Axis name="sold" title />
-                        <Legend position="top"
-                        // dy={-20}
-                        />
                         <Tooltip />
-                        <Interval position="genre*sold" color="genre"></Interval>
                         {/* <Geom type="interval" /> */}
                     </Chart>
                 </Row>

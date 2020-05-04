@@ -1,11 +1,8 @@
 export const defaultAlfredGlobalState = {
-    themeSetting: {
-        primaryColor: 'var(--primary-color)',
-        navLayout: 'top',
-        navTheme: 'dark'
-    },
     userInfo: {
-
+        id: null,
+        name: '',
+        auth: null
     },
-    isLogin: false,
+    isLogin: true,
 }

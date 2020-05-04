@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { SearchForm } from '@components/index'
-import { Form, Row, Col, Button, Table, Popconfirm } from 'antd'
+import { Form, Row, Col, Button, Table, Popconfirm, message } from 'antd'
 import { searchFormType, userManageItemType } from '@config/type.config'
 import { userManageForm } from '@config/form.config'
 import { userManageColumns } from '@config/table.config'
+import { USER_MANAGE } from '@config/api.config'
+import { fetchData } from '@utils/index'
 import styles from './index.less'
 
-export interface UserManageProps {
-
-}
+export interface UserManageProps { }
 
 const UserManage: React.FC<UserManageProps> = () => {
     const [formConfig, setFormConfig] = useState<searchFormType[]>([])
@@ -34,21 +34,34 @@ const UserManage: React.FC<UserManageProps> = () => {
     const handlePageSizeChange = (pageSize: number) => {
         setPageSize(pageSize)
     }
-    // 清空之前的数据
-    const clearTableData = () => {
-        setTableData([])
-    }
     // 获取数据
     const getTableData = () => {
+        setIsLoading(true)
         validateFields().then(values => {
-
+            fetchData({
+                url: USER_MANAGE,
+                data: {
+                    ...values
+                }
+            }).then(res => {
+                setIsLoading(false)
+                setTableData(res.result.data)
+                setTotalSize(res.result.count)
+            })
         })
     }
     // 删除当前行的权限
-    const handleDeleteAuth = (id: number) => {
+    const handleDeleteUser = (id: number) => {
+        fetchData({
+            url: `${USER_MANAGE}/${id}`,
+            type: 'DELETE'
+        }).then(() => {
+            message.success('删除成功')
+            getTableData()
+        })
     }
     // 编辑当前行的数据
-    const handleEditAuth = (id: number) => {
+    const handleEditUser = (id: number) => {
     }
     // 初始化表格列
     const initTableColumns = () => {
@@ -59,15 +72,15 @@ const UserManage: React.FC<UserManageProps> = () => {
                 render: (text, record: userManageItemType) => {
                     return (
                         <div className={styles['operate-box']}>
-                            <Button onClick={() => handleEditAuth(record.id)}>编辑</Button>
+                            <Button onClick={() => handleEditUser(record.id)} size='small'>查看</Button>
                             <Popconfirm
                                 title="确定删除本行所在人员的权限?"
-                                onConfirm={() => handleDeleteAuth(record.id)}
+                                onConfirm={() => handleDeleteUser(record.id)}
                                 okText="是"
                                 cancelText="否"
                             >
                                 <Button type='primary' danger size='small'
-                                    style={{ marginLeft: 20, fontSize: 12 }} >删除</Button>
+                                    style={{ marginLeft: 20, fontSize: 12 }} >禁用</Button>
                             </Popconfirm>
                         </div>
                     )
@@ -87,7 +100,7 @@ const UserManage: React.FC<UserManageProps> = () => {
     }, [pageNo, pageSize])
 
     return (
-        <div className={styles['auth-manage']}>
+        <div className={styles['User-manage']}>
             <Form form={form}>
                 <Row gutter={24}>
                     <SearchForm formConfig={formConfig} />

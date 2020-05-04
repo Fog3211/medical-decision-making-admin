@@ -1,16 +1,3 @@
-// 对象类型
-export interface anyObj {
-    [name: string]: any
-}
-// 日期类型
-export type dateType = {
-    startTime?: string
-    endTime?: string
-}
-// 主题设置相关类型
-export type menuLayoutType = 'topmenu' | 'leftmenu'
-export type themeType = 'light' | 'dark'
-
 // 搜索form的类型
 export type searchFormItemType = 'input' | 'select' | 'datetime' | 'rangePicker' | 'textArea'
 // 搜索form类型
@@ -34,7 +21,7 @@ export type authManageItemType = {
     id: number
     puid: number
     username: string
-    phonenumber: number
+    telphone: number
     auth_label: string
 }
 //权限管理列表类型
@@ -42,7 +29,7 @@ export type authRecordType = {
     id: number
     puid: number
     name: string
-    phonenumber: number
+    telphone: number
     email: string
     create_time: string
     auth_code: number
@@ -59,7 +46,7 @@ export type userManageItemType = {
     id: number
     puid: number
     username: string
-    phonenumber: number
+    telphone: number
     auth_label: string
 }
 //登录form类型
@@ -76,8 +63,16 @@ export type diseaseDataListType = {
     create_time: string
     diseaseName: string
 }
+//医院数据管理类型
+export type hospitalDataListType = {
+    id: number
+    handler: string
+    create_time: string
+    hospitalName: string
+}
+// 主题设置
 export type themeSettingType = {
-    navTheme: themeType
+    navTheme: MenuThemeProps
     navColor: string
     navMode: menuLayoutType
     primaryColor: string

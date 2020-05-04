@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Form, Row, Col, Input, Checkbox, Button, Select, message } from 'antd'
 import { loginTypeConfig } from '@config/form.config'
 import { loginTypeConfigType } from '@config/type.config'
-import IconMap from '@config/icon.config'
+import { MailOutlined, PhoneOutlined, LockOutlined } from '@ant-design/icons'
+import { USER_LOGIN } from '@config/api.config'
 import { FormProps } from 'antd/es/form'
-import { fetchData } from '@utils/index'
+import { fetchData, encryptionUtils } from '@utils/index'
+import { GlobalContext } from '@store/index'
 import styles from './index.less'
 
 const { Option } = Select
-export interface DiseaseDataProps extends FormProps {
 
-}
+export interface LoginProps extends FormProps { }
 
-const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
+const Login: React.FC<LoginProps> = (props) => {
+    const { dispatchGlobalState } = useContext(GlobalContext)
+
     const [loginType, setLoginType] = useState<loginTypeConfigType>({} as any)
 
     const [form] = Form.useForm()
@@ -23,30 +26,24 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
         validateFields().then(values => {
             window.location.href = '#/home'
             fetchData({
-                type: 'GET',
-                url: '',
+                type: 'POST',
+                url: USER_LOGIN,
                 data: {
-
+                    ...values,
+                    password: encryptionUtils.encrypt(values.password)
                 },
             }).then(res => {
-                if (res.code === 200) {
-                    if (values.autoLogin) {
-                        sessionStorage.setItem('token', 'll')
-                    }
-                    window.location.hash = '/#home'
-                    console.log(values)
-                } else {
-                    message.error(res.msg)
-                }
+                message.success('登录成功，欢迎回来~')
+                saveLoginInfo(res.result)
+                values.autoLogin && sessionStorage.setItem('token', res.result?.token)
+                window.location.hash = '/#home'
             })
-
         })
     }
     // 改变登录方式
     const changeLoginType = (value: string) => {
         loginTypeConfig.map(item => {
             if (item.key === value) {
-                console.log(item)
                 setLoginType(item)
             }
         })
@@ -57,24 +54,46 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
             setLoginType(loginTypeConfig[0])
         }
     }
+    // 保存登录信息
+    const saveLoginInfo = (result: anyObj) => {
+        const savedGlobalState = {
+            userInfo: {
+                id: result.id,
+                name: result.name,
+            },
+            isLogin: true
+        }
+
+        sessionStorage.setItem('savedGlobalState', JSON.stringify(savedGlobalState))
+        dispatchGlobalState(savedGlobalState)
+    }
+    // 清除登录信息
+    const clearLoginInfo = () => {
+        sessionStorage.clear()
+        dispatchGlobalState({
+            userInfo: {},
+            isLogin: false
+        })
+    }
 
     useEffect(() => {
         initLoginType()
+        clearLoginInfo()
     }, [])
 
     return (
         <div className={styles['login']}>
             <div className={styles['login-container']}>
                 <div className={styles['admin-info']}>辅助医疗决策后台管理系统</div>
-                <Form form={form} initialValues={{ email: '@test-admin.com', autoLogin: true }}
-                    className={styles['login-form']} onFinish={() => submitForm()}>
+                <Form form={form} initialValues={{ email: 'root@test-admin.com', password: 'adminer3211', autoLogin: true }}
+                    className={styles['login-form']} onFinish={submitForm}>
                     <Row>
                         <Col span={6}>
                             <Select defaultValue="email" value={loginType.key}
                                 style={{ width: '100%' }}
                                 onChange={(value) => changeLoginType(value)}>
-                                <Option value="email">{IconMap['email']} 邮箱</Option>
-                                <Option value="phonenumber">{IconMap['phone']} 手机</Option>
+                                <Option value="email"><MailOutlined /> 邮箱</Option>
+                                <Option value="telphone"><PhoneOutlined /> 手机</Option>
                             </Select>
                         </Col>
                         <Col span={18}>
@@ -86,7 +105,7 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
                     <Form.Item name='password' rules={[
                         { required: true, whitespace: true, message: '填写密码不能为空' },
                         { pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/, message: '请保证密码格式为6~10位数字+字母组合' }]}>
-                        <Input.Password prefix={IconMap['lock']} placeholder='请填写密码' />
+                        <Input.Password prefix={<LockOutlined />} placeholder='请填写密码' />
                     </Form.Item>
                     <Form.Item name='autoLogin' valuePropName='checked'>
                         <Checkbox style={{ color: '#fff' }}>自动登录</Checkbox>
@@ -99,4 +118,4 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
     )
 }
 
-export default DiseaseData 
+export default Login 

@@ -1,16 +1,36 @@
 let basicURL: string = ''
 
 if (process.env.NODE_ENV === 'development') {
-  basicURL = 'http://localhost:3000' + '/api'
+  basicURL = '/admin'
 } else {
-  basicURL = window.location.origin + '/api'
+  basicURL = window.location.origin + '/admin'
 }
 
-// 删除标签
-const DELETE_TAG_NAME = `${basicURL}/tagDel`
+// 登录系统
+const USER_LOGIN = `${basicURL}/login`
+
+// 删除用户
+const USER_MANAGE = `${basicURL}/user`
+
+// 删除医院
+const HOSPITAL_MANAGE = `${basicURL}/hospital`
+
+// 后台人员管理
+const AUTH_MANAGE = `${basicURL}/adminer`
+
+// 疾病管理
+const DISEASE_MANAGE = `${basicURL}/disease`
+
+// 决策管理
+const DECISION_MANAGE = `${basicURL}/decision`
 
 export {
-  DELETE_TAG_NAME
+  USER_LOGIN,
+  USER_MANAGE,
+  HOSPITAL_MANAGE,
+  AUTH_MANAGE,
+  DISEASE_MANAGE,
+  DECISION_MANAGE
 }
 
 

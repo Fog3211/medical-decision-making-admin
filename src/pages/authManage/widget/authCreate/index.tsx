@@ -31,14 +31,9 @@ const AuthCreate: React.FC<AuthCreateProps> = (props: AuthCreateProps) => {
                 data: {
                     values
                 },
-            }).then(res => {
-                if (res.code === 200) {
-                    message.success('操作成功')
-                    getTableData()
-                } else {
-                    message.error(res.msg)
-                }
-                console.log(res)
+            }).then(() => {
+                message.success('操作成功')
+                getTableData()
             })
         })
     }
@@ -99,7 +94,7 @@ const AuthCreate: React.FC<AuthCreateProps> = (props: AuthCreateProps) => {
                         </Form.Item>
                     </Col>
                     <Col span={24}>
-                        <Form.Item name='phonenumber' label='手机号' rules={[
+                        <Form.Item name='telphone' label='手机号' rules={[
                             { required: true, whitespace: true, message: '手机号不能为空' },
                             { pattern: /^[1]([3-9])[0-9]{9}$/, message: '请填写正确的手机号' }]}>
                             <Input placeholder='请填写手机号' />

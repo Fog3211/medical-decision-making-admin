@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Button, Result } from 'antd'
 import { Link } from 'react-router-dom'
 
-export interface NotFoundProps {
+export interface NotFoundProps { }
 
-}
-const NoFound: React.FC<NotFoundProps> = () => (
+const NoFound: React.FC<NotFoundProps> = memo(() => (
     <Result
         status={404}
         title="404"
@@ -16,6 +15,6 @@ const NoFound: React.FC<NotFoundProps> = () => (
             </Button>
         }
     />
-)
+))
 
 export default NoFound

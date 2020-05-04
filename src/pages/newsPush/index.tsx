@@ -7,7 +7,7 @@ export interface NewsPushProps extends FormProps {
 
 }
 
-const NewsPush: React.FC<NewsPushProps> = (props: NewsPushProps) => {
+const NewsPush: React.FC<NewsPushProps> = (props) => {
     return (
         <Form className={styles['news-push']}>
             <Card title='个人账户'>

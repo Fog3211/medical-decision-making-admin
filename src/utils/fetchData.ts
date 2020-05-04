@@ -1,3 +1,5 @@
+import { message } from 'antd'
+
 const token = window.sessionStorage.getItem('token')
 
 const fetchData: (params: fetchType) => Promise<any> = async (params: fetchType) => {
@@ -29,14 +31,20 @@ const fetchData: (params: fetchType) => Promise<any> = async (params: fetchType)
   } else {
     requestHeader.body = JSON.stringify(data)
   }
-  const response = await fetch(params.url, requestHeader)
-  return response.json()
+
+  const res = await (await fetch(params.url, requestHeader)).json()
+  if (res.code !== 200) {
+    message.error(res.msg)
+    return Promise.reject()
+  } else {
+    return res
+  }
 }
 
 function transformDataToUrl(data: anyObj) {
   data = data || {}
   let params: string = '?'
-  for (let key in data) {
+  for (const key in data) {
     if (key) {
       params += `${key}=${data[key]}&`
     }

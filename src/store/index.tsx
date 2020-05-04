@@ -2,12 +2,12 @@ import React, { createContext, useReducer } from "react"
 import { defaultAlfredGlobalState } from './store'
 import reducer from './reducer'
 
-export interface GlobalStateStoreProps {
+export interface GlobalStateProviderProps {
     children: any
 }
 export const GlobalContext = createContext(null)
 
-const GlobalStateStore: React.FC<GlobalStateStoreProps> = (props) => {
+const GlobalStateProvider: React.FC<GlobalStateProviderProps> = (props) => {
     const [globalState, dispatchGlobalState] = useReducer(reducer, defaultAlfredGlobalState)
 
     return (
@@ -17,5 +17,5 @@ const GlobalStateStore: React.FC<GlobalStateStoreProps> = (props) => {
     )
 }
 
-export default GlobalStateStore
+export default GlobalStateProvider
 

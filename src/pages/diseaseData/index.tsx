@@ -29,7 +29,6 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
     const getTableData = () => {
         validateFields().then(values => {
             console.log(values)
-            clearTableData()
             // setIsLoading(true)
             const data = [{
                 id: 1,
@@ -50,11 +49,6 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
                 }
             }).then(res => {
                 setIsLoading(false)
-                if (res.code === 200) {
-
-                } else {
-                    message.error(res.msg)
-                }
             })
         })
     }
@@ -69,10 +63,6 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
     // 改变分页数量
     const handlePageSizeChange = (pageSize: number) => {
         setPageSize(pageSize)
-    }
-    // 清空之前的数据
-    const clearTableData = () => {
-        setTableData([])
     }
     // 初始化表格列
     const initTableColumns = () => {
@@ -132,7 +122,7 @@ const DiseaseData: React.FC<DiseaseDataProps> = (props: DiseaseDataProps) => {
             <Form form={form} onFinish={getTableData}>
                 <Row gutter={24}>
                     <SearchForm formConfig={formConfig} />
-                    <Col span={8} offset={8} style={{ textAlign: 'right' }}>
+                    <Col span={8} offset={16} style={{ textAlign: 'right' }}>
                         <Space size={20}>
                             <Button type='primary' htmlType='submit'>查询</Button>
                             <Button onClick={() => resetFields()}>重置</Button>

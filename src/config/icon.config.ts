@@ -6,7 +6,8 @@ import {
     BgColorsOutlined, GlobalOutlined, UserOutlined,
     DashboardOutlined, CommentOutlined, KeyOutlined,
     LogoutOutlined, AuditOutlined, ApartmentOutlined,
-    LockOutlined
+    MedicineBoxOutlined, ExperimentOutlined,
+    ProfileOutlined, BellOutlined, NotificationOutlined
 } from '@ant-design/icons'
 
 const IconMap = {
@@ -28,7 +29,11 @@ const IconMap = {
     logout: LogoutOutlined,
     audit: AuditOutlined,
     grade: ApartmentOutlined,
-    lock: LockOutlined,
+    medicine: MedicineBoxOutlined,
+    experiment: ExperimentOutlined,
+    profile: ProfileOutlined,
+    bell: BellOutlined,
+    notification: NotificationOutlined
 }
 
 Object.keys(IconMap).forEach(item => {

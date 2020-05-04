@@ -56,7 +56,7 @@ module.exports = merge(common, {
     'progress': true,
     'proxy': {
       '/admin': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:7001',
         pathRewrite: {
           '^/admin': '/admin',
         },

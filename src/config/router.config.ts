@@ -19,60 +19,60 @@ export interface routeConfigType {
 
 const routes: routeConfigType[] = [
   {
-    path: '/data_statistic',
+    path: '/statistic',
     template: DataStatistic,
     name: '数据统计',
     exact: true,
-    key: 'data_statistic'
+    key: 'statistic'
   },
   {
-    path: '/disease_data',
+    path: '/disease',
     template: DiseaseData,
     name: '疾病数据',
     exact: true,
-    key: 'disease_data'
+    key: 'disease'
   },
   {
-    path: '/hospital_data',
+    path: '/hospital',
     template: HospitalData,
     name: '医院数据',
     exact: true,
-    key: 'hospital_data'
+    key: 'hospital'
   },
   {
-    path: '/user_manage',
+    path: '/user',
     template: UserManage,
     name: '用户管理',
     exact: true,
-    key: 'user_manage'
+    key: 'user'
   },
   {
-    path: '/auth_manage',
+    path: '/auth',
     template: AuthManage,
     name: '权限管理',
     exact: true,
-    key: 'auth_manage'
+    key: 'auth'
   },
   {
-    path: '/news_push',
+    path: '/news',
     template: NewsPush,
     name: '医学知识推送',
     exact: true,
-    key: 'news_push'
+    key: 'news'
   },
   {
-    path: '/decision_audit',
+    path: '/audit',
     template: DecisionAudit,
     name: '决策审核',
     exact: true,
     key: 'decision_audit'
   },
   {
-    path: '/decision_setting',
+    path: '/decisionSetting',
     template: DecisionSetting,
     name: '决策管理',
     exact: true,
-    key: 'decision_setting'
+    key: 'decisionSetting'
   },
   {
     path: '/home',

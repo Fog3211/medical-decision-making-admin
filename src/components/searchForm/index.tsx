@@ -21,15 +21,10 @@ const SearchForm: React.FC<SearchFormProps> = (props: SearchFormProps) => {
     const getOptionList = async (url: string, key: string) => {
         fetchData({
             url
-        }).then(res => {
-            if (res.code === 200) {
-                updateOptionistContainer(key, res.data)
-            } else {
-                message.error(res.msg)
-            }
-        }).catch(err => {
-            message.error(err)
-        })
+        }).then(res => updateOptionistContainer(key, res.data))
+            .catch(err => {
+                message.error(err)
+            })
     }
     // 更新下拉数据
     const updateOptionistContainer = (key: string, option: selectType[]) => {
