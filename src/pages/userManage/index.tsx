@@ -11,7 +11,7 @@ import styles from './index.less'
 
 export interface UserManageProps { }
 
-const UserManage: React.FC<UserManageProps> = () => {
+const UserManage: React.FC<UserManageProps> = (props) => {
     const [formConfig, setFormConfig] = useState<searchFormType[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [tableData, setTableData] = useState<userManageItemType[]>([])

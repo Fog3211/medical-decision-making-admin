@@ -11,7 +11,7 @@ const { confirm } = Modal
 const { Option } = Select
 
 export interface AdminerEditProps {
-    currentRecordId: number
+    currentRecordId: string
     isEditAdminerShow: boolean
     closeAdminerEdit: Function
     getTableData: Function
@@ -50,7 +50,7 @@ const AdminerEdit: React.FC<AdminerEditProps> = (props: AdminerEditProps) => {
         })
     }
     // 获取权限数据详情
-    const getCurrentRecord = (id: number) => {
+    const getCurrentRecord = (id: string) => {
         if (!id) {
             message.error('获取用户信息出错！')
             return

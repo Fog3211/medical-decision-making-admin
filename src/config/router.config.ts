@@ -1,9 +1,9 @@
 import {
-  DataStatistic, DiseaseData,
+  DataStatistic, DiseaseManage,
   UserManage, AdminerManage,
   NotFound, Home, ModifyPassword,
   NewsPush, DecisionSetting, DecisionAudit,
-  HospitalData
+  HospitalManage
 } from '@pages/index'
 
 export interface routeConfigType {
@@ -27,14 +27,14 @@ const routes: routeConfigType[] = [
   },
   {
     path: '/disease',
-    template: DiseaseData,
+    template: DiseaseManage,
     name: '疾病数据',
     exact: true,
     key: 'disease'
   },
   {
     path: '/hospital',
-    template: HospitalData,
+    template: HospitalManage,
     name: '医院数据',
     exact: true,
     key: 'hospital'
@@ -53,13 +53,13 @@ const routes: routeConfigType[] = [
     exact: true,
     key: 'adminer'
   },
-  {
-    path: '/news',
-    template: NewsPush,
-    name: '医学知识推送',
-    exact: true,
-    key: 'news'
-  },
+  // {
+  //   path: '/news',
+  //   template: NewsPush,
+  //   name: '医学知识推送',
+  //   exact: true,
+  //   key: 'news'
+  // },
   {
     path: '/audit',
     template: DecisionAudit,

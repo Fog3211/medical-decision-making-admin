@@ -1,11 +1,11 @@
 import DataStatistic from "./dataStatistic"
 import AdminerManage from "./adminerManage"
 import UserManage from "./userManage"
-import DiseaseData from "./diseaseData"
+import DiseaseManage from "./diseaseManage"
 import Login from "./login"
 import Home from "./home"
 import NotFound from "./notFound"
-import HospitalData from "./hospitalData"
+import HospitalManage from "./hospitalManage"
 import ModifyPassword from "./modifyPassword"
 import NewsPush from "./newsPush"
 import DecisionSetting from "./decisionSetting"
@@ -15,11 +15,11 @@ export {
     DataStatistic,
     AdminerManage,
     UserManage,
-    DiseaseData,
+    DiseaseManage,
     Login,
     Home,
     NotFound,
-    HospitalData,
+    HospitalManage,
     ModifyPassword,
     NewsPush,
     DecisionSetting,

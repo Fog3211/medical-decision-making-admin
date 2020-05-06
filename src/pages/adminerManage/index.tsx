@@ -20,7 +20,7 @@ const AdminerManage: React.FC<AdminerManageProps> = (props) => {
     const [pageNo, setPageNo] = useState<number>(1)
     const [pageSize, setPageSize] = useState<number>(20)
     const [totalSize, setTotalSize] = useState<number>(0)
-    const [currentRecordId, setCurrentRecordId] = useState<number>(0)
+    const [currentRecordId, setCurrentRecordId] = useState<string>('')
     const [isEditAdminerShow, setIsEditAdminerShow] = useState<boolean>(false)
     const [isCreateAdminerShow, setIsCreateAdminerShow] = useState<boolean>(false)
 
@@ -56,7 +56,7 @@ const AdminerManage: React.FC<AdminerManageProps> = (props) => {
         })
     }
     // 删除当前行的权限
-    const handleDeleteAdminer = (id: number) => {
+    const handleDeleteAdminer = (id: string) => {
         fetchData({
             url: `${ADMINER_MANAGE}/${id}`,
             type: 'DELETE'
@@ -66,7 +66,7 @@ const AdminerManage: React.FC<AdminerManageProps> = (props) => {
         })
     }
     // 编辑当前行的数据
-    const handleEditAdminer = (id: number) => {
+    const handleEditAdminer = (id: string) => {
         setCurrentRecordId(id)
         setIsEditAdminerShow(true)
     }

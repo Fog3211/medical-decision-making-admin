@@ -15,11 +15,9 @@ const layoutConfig = {
   // title: '辅助医疗决策系统',
   // layout: 'topmenu' as any
 }
-export interface BasicLayoutProps {
+export interface BasicLayoutProps { }
 
-}
-
-const BasicLayout: React.FC<BasicLayoutProps> = (props: BasicLayoutProps) => {
+const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const { globalState, dispatchGlobalState } = useContext(GlobalContext)
   const { userInfo } = globalState
 

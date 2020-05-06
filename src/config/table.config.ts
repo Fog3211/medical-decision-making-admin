@@ -18,7 +18,7 @@ export const userManageColumns: ColumnProps<any>[] = [
   { title: '创建时间', dataIndex: 'createdAt', align: 'center', key: 'createdAt', },
 ]
 // 疾病数据管理
-export const diseaseDataColumns: ColumnProps<any>[] = [
+export const diseaseManageColumns: ColumnProps<any>[] = [
   { title: '疾病编号', dataIndex: 'diseaseCode', align: 'center', key: 'diseaseCode', },
   { title: '疾病名称', dataIndex: 'diseaseName', align: 'center', key: 'diseaseName', },
   { title: '所属科室', dataIndex: 'department', align: 'center', key: 'department', },
@@ -27,10 +27,12 @@ export const diseaseDataColumns: ColumnProps<any>[] = [
   { title: '处理人', dataIndex: 'handler', align: 'center', key: 'handler', },
 ]
 // 医院数据管理
-export const hospitalDataColumns: ColumnProps<any>[] = [
-  { title: '医院编号', dataIndex: 'hospitalCode', align: 'center', key: 'hospitalCode', },
-  { title: '医院名称', dataIndex: 'hospitalName', align: 'center', key: 'hospitalName', },
-  { title: '创建时间', dataIndex: 'createdAt', align: 'center', key: 'createdAt', },
+export const hospitalManageColumns: ColumnProps<any>[] = [
+  { title: '医院名称', dataIndex: 'name', align: 'center', key: 'name', },
+  { title: '电话', dataIndex: 'phone', align: 'center', key: 'phone', },
+  { title: '省份', dataIndex: 'province', align: 'center', key: 'province', },
+  { title: '城市', dataIndex: 'city', align: 'center', key: 'city', },
+  { title: '具体地址', dataIndex: 'address', align: 'center', key: 'address', },
   { title: '处理人', dataIndex: 'handler', align: 'center', key: 'handler', },
-  { title: '地址', dataIndex: 'address', align: 'center', key: 'address', },
+  { title: '创建时间', dataIndex: 'createdAt', align: 'center', key: 'createdAt', },
 ]

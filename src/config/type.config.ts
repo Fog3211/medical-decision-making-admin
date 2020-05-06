@@ -29,14 +29,14 @@ export type optionistContainer = {
 }
 //后台人员管理列表类型
 export type adminerManageItemType = {
-    id: number
+    id: string
     name: string
     telphone: number
     auth_label: string
 }
 //后台人员管理列表类型
 export type adminerRecordType = {
-    id: number
+    id: string
     name: string
     telphone: number
     email: string
@@ -67,18 +67,18 @@ export type loginTypeConfigType = {
 }
 //疾病数据管理类型
 export type diseaseDataListType = {
-    id: number
+    id: string
     handler: string
-    createat: string
+    createAt: string
     diseaseName: string
     diseaseCode: string
 }
 //医院数据管理类型
-export type hospitalDataListType = {
-    id: number
+export type hospitalListType = {
+    id: string
     handler: string
-    createat: string
-    hospitalName: string
+    createAt: string
+    name: string
 }
 // 主题设置
 export type themeSettingType = {

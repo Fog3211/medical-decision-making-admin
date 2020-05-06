@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { SearchForm } from '@components/index'
 import { Form, Row, Col, Space, Button, Table, Popconfirm, message, Tag } from 'antd'
-import { hospitalDataForm } from '@config/form.config'
-import { hospitalDataColumns } from '@config/table.config'
-import { searchFormType, hospitalDataListType } from '@config/type.config'
-import { HOSPITAL_MANAGE } from '@config/api.config'
+import { diseaseManageForm } from '@config/form.config'
+import { diseaseManageColumns } from '@config/table.config'
+import { searchFormType, diseaseDataListType } from '@config/type.config'
+import { DISEASE_MANAGE } from '@config/api.config'
+import { DiseaseDetail } from './widget/index'
 import { fetchData } from '@utils/index'
 import { PlusOutlined } from '@ant-design/icons'
 import styles from './index.less'
 
-export interface HospitalDataProps { }
+export interface DiseaseManageProps { }
 
-const HospitalData: React.FC<HospitalDataProps> = (props) => {
+const DiseaseManage: React.FC<DiseaseManageProps> = (props) => {
     const [formConfig, setFormConfig] = useState<searchFormType[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [tableData, setTableData] = useState<hospitalDataListType[]>([])
+    const [tableData, setTableData] = useState<diseaseDataListType[]>([])
     const [columns, setColumns] = useState<any[]>([])
     const [pageNo, setPageNo] = useState<number>(1)
     const [pageSize, setPageSize] = useState<number>(20)
     const [totalSize, setTotalSize] = useState<number>(0)
+    const [isDiseaseDetailShow, setIsDiseaseDetailShow] = useState<boolean>(false)
+    const [currentRecordId, setCurrentRecordId] = useState<string>('')
 
     const [form] = Form.useForm()
     const { resetFields, validateFields } = form
@@ -26,27 +29,25 @@ const HospitalData: React.FC<HospitalDataProps> = (props) => {
     // 获取表格数据
     const getTableData = () => {
         validateFields().then(values => {
-            clearTableData()
             setIsLoading(true)
-
             fetchData({
                 type: 'GET',
-                url: HOSPITAL_MANAGE,
+                url: DISEASE_MANAGE,
                 data: {
                     ...values,
                     pageNo,
-                    pageSize,
+                    pageSize
                 }
             }).then(res => {
                 setIsLoading(false)
-                setTableData(res.result?.data)
-                setTotalSize(res.result?.count)
+                setTableData(res.result.data)
+                setTotalSize(res.result.count)
             })
         })
     }
     // 初始化搜索form
     const initSearchForm = () => {
-        setFormConfig(hospitalDataForm)
+        setFormConfig(diseaseManageForm)
     }
     // 改变当前页号
     const handlePageNoChange = (pageNo: number) => {
@@ -56,14 +57,10 @@ const HospitalData: React.FC<HospitalDataProps> = (props) => {
     const handlePageSizeChange = (pageSize: number) => {
         setPageSize(pageSize)
     }
-    // 清空之前的数据
-    const clearTableData = () => {
-        setTableData([])
-    }
     // 初始化表格列
     const initTableColumns = () => {
         const columns = [
-            ...hospitalDataColumns,
+            ...diseaseManageColumns,
             {
                 title: '搜索关键词', dataIndex: 'tag', align: 'center', key: 'tag', render: (value: any) => {
                     return value.slice(0, 5).map((u: string, index: number) => (
@@ -73,14 +70,14 @@ const HospitalData: React.FC<HospitalDataProps> = (props) => {
             },
             {
                 title: '操作', dataIndex: 'operate', align: 'center', key: 'operate',
-                render: (text, record: hospitalDataListType) => {
+                render: (text, record: diseaseDataListType) => {
                     return (
                         <div className={styles['operate-box']}>
                             <Tag className={styles['show-detail-btn']}
-                                onClick={() => showHospitalDetail(record.id)} color='var(--info-color)'>查看详情</Tag>
+                                onClick={() => showDiseaseDetail(record.id)} color='var(--info-color)'>查看详情</Tag>
                             <Popconfirm
-                                title="确定删除本条医院数据？"
-                                onConfirm={() => handleDeleteHospital(record.id)}
+                                title="确定删除本条疾病数据？"
+                                onConfirm={() => handleDeleteDisease(record.id)}
                                 okText="是"
                                 cancelText="否"
                             >
@@ -94,14 +91,15 @@ const HospitalData: React.FC<HospitalDataProps> = (props) => {
         ]
         setColumns(columns)
     }
-    // 编辑医院数据
-    const showHospitalDetail = (id: number) => {
-
+    // 编辑疾病数据
+    const showDiseaseDetail = (id: string) => {
+        setCurrentRecordId(id)
+        setIsDiseaseDetailShow(true)
     }
-    // 删除医院数据
-    const handleDeleteHospital = (id: number) => {
+    // 删除疾病数据
+    const handleDeleteDisease = (id: string) => {
         fetchData({
-            url: `${HOSPITAL_MANAGE}/${id}`,
+            url: `${DISEASE_MANAGE}/${id}`,
             type: 'DELETE'
         }).then(() => {
             message.success('删除成功')
@@ -119,7 +117,7 @@ const HospitalData: React.FC<HospitalDataProps> = (props) => {
     }, [pageNo, pageSize])
 
     return (
-        <div className={styles['hospital-data']}>
+        <div className={styles['disease-manage']}>
             <Form form={form} onFinish={getTableData}>
                 <Row gutter={24}>
                     <SearchForm formConfig={formConfig} />
@@ -132,8 +130,8 @@ const HospitalData: React.FC<HospitalDataProps> = (props) => {
                     </Col>
                 </Row>
             </Form>
-            <Table bordered className={styles['hospital-data-list']}
-                rowKey={(record: hospitalDataListType, index: number) => String(index)}
+            <Table bordered className={styles['disease-data-list']}
+                rowKey={(record: diseaseDataListType, index) => String(index)}
                 pagination={{
                     defaultPageSize: 20,
                     current: pageNo,
@@ -147,8 +145,13 @@ const HospitalData: React.FC<HospitalDataProps> = (props) => {
                 loading={isLoading}
                 columns={columns}
                 dataSource={tableData} />
+            {/* 疾病详细信息 */}
+            <DiseaseDetail isDiseaseDetailShow={isDiseaseDetailShow}
+                currentRecordId={currentRecordId}
+                getTableData={getTableData}
+                closeDiseaseDetail={() => setIsDiseaseDetailShow(false)} />
         </div>
     )
 }
 
-export default HospitalData 
+export default DiseaseManage 
