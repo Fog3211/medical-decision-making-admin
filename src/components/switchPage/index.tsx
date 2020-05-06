@@ -36,7 +36,7 @@ const SwitchPage: React.FC<SwitchPageProps> = (props) => {
         />)
       } else {
         result.push(
-          <Redirect key={item.path} to={item.redirect} />
+          <Redirect key={item.path} to={item.redirect || '/404'} />
         )
       }
     })
