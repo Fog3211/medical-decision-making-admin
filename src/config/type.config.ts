@@ -22,6 +22,7 @@ export type ComPropsType = {
     showTime?: boolean
     disabled?: boolean
     type?: string
+    autoSize?: anyObj | boolean
 }
 // 下拉选择form选项组合类型
 export type optionistContainer = {
@@ -32,7 +33,7 @@ export type adminerManageItemType = {
     id: string
     name: string
     telphone: number
-    auth_label: string
+    auth: string
 }
 //后台人员管理列表类型
 export type adminerRecordType = {
@@ -70,7 +71,7 @@ export type diseaseDataListType = {
     id: string
     handler: string
     createAt: string
-    diseaseName: string
+    name: string
     diseaseCode: string
 }
 //医院数据管理类型

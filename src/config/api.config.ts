@@ -20,6 +20,9 @@ const DISEASE_MANAGE = `${basicURL}/disease`
 const DECISION_MANAGE = `${basicURL}/decision`
 // 权限管理
 const AUTH_MANAGE = `${basicURL}/auth`
+// 根据用户权限获取路由
+const GET_ROUTES_BY_AUTH = `${basicURL}/authRoutes`
+
 export {
   USER_LOGIN,
   USER_MANAGE,
@@ -27,7 +30,8 @@ export {
   AUTH_MANAGE,
   DISEASE_MANAGE,
   DECISION_MANAGE,
-  ADMINER_MANAGE
+  ADMINER_MANAGE,
+  GET_ROUTES_BY_AUTH
 }
 
 

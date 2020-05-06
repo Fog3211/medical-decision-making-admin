@@ -1,7 +1,7 @@
 import { searchFormType, loginTypeConfigType } from '@config/type.config'
 import {
     EmailRules, TelphoneRules, NameRules, PasswordRules,
-    StrictEmailRules, StrictTelphoneRules
+    StrictEmailRules, StrictTelphoneRules, StrictRequiredRules
 } from '@config/rule.config'
 
 //form布局
@@ -74,13 +74,13 @@ export const hospitalDetailForm: searchFormType[] = [
     { span: 12, type: 'input', formProps: { name: 'adress', label: '具体地址', }, comProps: {} },
     { span: 12, type: 'input', formProps: { name: 'phone', label: '电话', }, comProps: {} },
     { span: 12, type: 'input', formProps: { name: 'createAt', label: '录入时间', }, comProps: { disabled: true, } },
-    { span: 24, type: 'textArea', formProps: { name: 'introduction', label: '简介', }, comProps: {} },
+    { span: 24, type: 'textArea', formProps: { name: 'introduction', label: '简介', rules: StrictRequiredRules }, comProps: { placeholder: '请输入医院简介', autoSize: { minRows: 2, maxRows: 6 } } },
 ]
 // 疾病详细信息form配置
 export const diseaseDetailForm: searchFormType[] = [
     { span: 12, type: 'input', formProps: { name: 'id', label: '疾病ID', }, comProps: { disabled: true } },
     { span: 12, type: 'input', formProps: { name: 'name', label: '疾病名称', }, comProps: {} },
     { span: 12, type: 'input', formProps: { name: 'createAt', label: '录入时间', }, comProps: { disabled: true, } },
-    { span: 24, type: 'textArea', formProps: { name: 'introduction', label: '症状描述', }, comProps: { placeholder: '请输入疾病症状描述' }, },
-    { span: 24, type: 'textArea', formProps: { name: 'introduction', label: '治疗方案', }, comProps: { placeholder: '请输入疾病治疗方案' }, }
+    { span: 24, type: 'textArea', formProps: { name: 'introduction', label: '症状描述', rules: StrictRequiredRules }, comProps: { placeholder: '请输入疾病症状描述', autoSize: { minRows: 2, maxRows: 6 } }, },
+    { span: 24, type: 'textArea', formProps: { name: 'introduction', label: '治疗方案', rules: StrictRequiredRules }, comProps: { placeholder: '请输入疾病治疗方案', autoSize: { minRows: 2, maxRows: 6 } }, }
 ]

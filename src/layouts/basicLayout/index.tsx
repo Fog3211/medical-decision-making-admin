@@ -8,7 +8,7 @@ import { menus } from '@config/menu.config'
 import IconMap from '@config/icon.config'
 import { themeSettingType } from '@config/type.config'
 import { GlobalContext } from '@store/index'
-import { themeUtils } from '@utils/index'
+import { themeUtils, fetchData } from '@utils/index'
 
 const layoutConfig = {
   logo: null,

@@ -27,3 +27,7 @@ export const PasswordRules = [
     { required: true, whitespace: true, message: '用户名不能为空' },
     { pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,15}$/, message: '密码必须为6~15位数字字母组合' }
 ]
+// 必填字段校验
+export const StrictRequiredRules = [
+    { required: true, whitespace: true, message: '必填字段，请检查输入' },
+]

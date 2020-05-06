@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Row, Col, Modal, Switch, Form, message, Select, Input } from 'antd'
+import { Row, Modal, Form, message } from 'antd'
 import { searchFormType } from '@config/type.config'
 import { SearchForm } from '@components/index'
 import { USER_MANAGE } from '@config/api.config'
