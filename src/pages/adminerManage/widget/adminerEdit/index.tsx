@@ -17,7 +17,7 @@ export interface AdminerEditProps {
     getTableData: Function
 }
 
-const AdminerEdit: React.FC<AdminerEditProps> = (props: AdminerEditProps) => {
+const AdminerEdit: React.FC<AdminerEditProps> = (props) => {
     const { currentRecordId, isEditAdminerShow, closeAdminerEdit, getTableData } = props
 
     const [adminerCodeList, setAdminerCodeList] = useState<selectType[]>([])
@@ -38,14 +38,15 @@ const AdminerEdit: React.FC<AdminerEditProps> = (props: AdminerEditProps) => {
     // 确认完成
     const handleSubmitForm = (values: adminerRecordType) => {
         fetchData({
-            type: 'POST',
-            url: ADMINER_MANAGE,
+            type: 'PUT',
+            url: `${ADMINER_MANAGE}/${currentRecordId}`,
             data: {
                 ...values,
                 password: encryptionUtils.encrypt(values.password)
             },
         }).then(() => {
             message.success('操作成功')
+            closeAdminerEdit()
             getTableData()
         })
     }

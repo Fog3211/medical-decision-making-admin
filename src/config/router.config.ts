@@ -2,7 +2,7 @@ import {
   DataStatistic, DiseaseManage,
   UserManage, AdminerManage,
   NotFound, Home, ModifyPassword,
-  NewsPush, DecisionSetting, DecisionAudit,
+  DecisionAudit,
   HospitalManage
 } from '@pages/index'
 
@@ -53,26 +53,12 @@ const routes: routeConfigType[] = [
     exact: true,
     key: 'adminer'
   },
-  // {
-  //   path: '/news',
-  //   template: NewsPush,
-  //   name: '医学知识推送',
-  //   exact: true,
-  //   key: 'news'
-  // },
   {
     path: '/audit',
     template: DecisionAudit,
     name: '决策审核',
     exact: true,
-    key: 'decision_audit'
-  },
-  {
-    path: '/decisionSetting',
-    template: DecisionSetting,
-    name: '决策管理',
-    exact: true,
-    key: 'decisionSetting'
+    key: 'audit'
   },
   {
     path: '/home',

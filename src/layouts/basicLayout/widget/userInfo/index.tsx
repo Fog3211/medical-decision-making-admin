@@ -11,15 +11,14 @@ export interface UserInfoProps {
 // 默认用户信息
 const defaultInfo: userInfoType = {
     name: '未登录',
-    avatar: '',
+    avatar: 'https://files.yunqueyi.com//image/jpeg/HJ_B010_024_A-20181210174220493.jpg',
     isLogin: false
 }
-const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
+const UserInfo: React.FC<UserInfoProps> = (props) => {
     const userInfo = props.userInfo || defaultInfo
 
     // 注销登录
     const handleLogout = () => {
-
         sessionStorage.clear()
         window.location.href = '/#login'
     }

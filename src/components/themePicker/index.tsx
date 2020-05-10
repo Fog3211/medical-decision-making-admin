@@ -7,11 +7,11 @@ import { defaultSetting, presetColorList, lightNavColor, darkNavColor } from '@c
 import styles from './index.less'
 
 interface ThemePickerProps {
-    setThemeByLocalSetting: Function
+    changeThemeByLocalSetting: Function
 }
 
-const ThemePicker: React.FC<ThemePickerProps> = (props: ThemePickerProps) => {
-    const { setThemeByLocalSetting } = props
+const ThemePicker: React.FC<ThemePickerProps> = (props) => {
+    const { changeThemeByLocalSetting } = props
 
     const [themeSetting, setThemeSetting] = useState<themeSettingType>(defaultSetting)
     const [isDrawerShow, setIsDrawerShow] = useState<boolean>(false)
@@ -23,17 +23,18 @@ const ThemePicker: React.FC<ThemePickerProps> = (props: ThemePickerProps) => {
     }
     // 设置改变时
     const changeThemeSetting = (key: string, value) => {
+        const copyThemeSetting = JSON.parse(JSON.stringify(themeSetting))
 
         if (key === 'navTheme') {
-            themeSetting['navTheme'] = value ? 'dark' : 'light'
-            themeSetting['navColor'] = value ? darkNavColor : lightNavColor
+            copyThemeSetting['navTheme'] = value ? 'dark' : 'light'
+            copyThemeSetting['navColor'] = value ? darkNavColor : lightNavColor
         } else {
-            themeSetting[key] = value
+            copyThemeSetting[key] = value
         }
 
-        setThemeSetting(themeSetting)
-        setThemeByLocalSetting(themeSetting)
-        localStorage.setItem("af-theme-setting", JSON.stringify(themeSetting))
+        setThemeSetting(copyThemeSetting)
+        changeThemeByLocalSetting(copyThemeSetting)
+        localStorage.setItem("af-theme-setting", JSON.stringify(copyThemeSetting))
     }
     // 还原默认设置
     const resetThemeSetting = () => {
@@ -114,8 +115,8 @@ const ThemePicker: React.FC<ThemePickerProps> = (props: ThemePickerProps) => {
             <div className={styles["nav-mode"]}>
                 <h3>导航模式</h3>
                 <Radio.Group value={themeSetting.navMode} onChange={(e) => changeThemeSetting('navMode', e.target.value)} >
-                    <Radio value={'left'}>左侧</Radio>
-                    <Radio value={'top'}>顶部</Radio>
+                    <Radio value={'sidemenu'}>左侧</Radio>
+                    <Radio value={'topmenu'}>顶部</Radio>
                 </Radio.Group>
                 <Divider />
             </div>

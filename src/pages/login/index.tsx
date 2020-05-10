@@ -24,7 +24,6 @@ const Login: React.FC<LoginProps> = (props) => {
     // 提交表单
     const submitForm = () => {
         validateFields().then(values => {
-            window.location.href = '#/home'
             fetchData({
                 type: 'POST',
                 url: USER_LOGIN,
@@ -85,10 +84,10 @@ const Login: React.FC<LoginProps> = (props) => {
         <div className={styles['login']}>
             <div className={styles['login-container']}>
                 <div className={styles['admin-info']}>辅助医疗决策后台管理系统</div>
-                <Form form={form} initialValues={{ email: 'root@test-admin.com', password: 'adminer3211', autoLogin: true }}
+                <Form form={form} initialValues={{ email: '@test-admin.com', autoLogin: true }}
                     className={styles['login-form']} onFinish={submitForm}>
                     <Row>
-                        <Col span={6}>
+                        <Col span={8}>
                             <Select defaultValue="email" value={loginType.key}
                                 style={{ width: '100%' }}
                                 onChange={(value) => changeLoginType(value)}>
@@ -96,7 +95,7 @@ const Login: React.FC<LoginProps> = (props) => {
                                 <Option value="telphone"><PhoneOutlined /> 手机</Option>
                             </Select>
                         </Col>
-                        <Col span={18}>
+                        <Col span={16}>
                             <Form.Item name={loginType.key} rules={loginType.rules}>
                                 <Input placeholder={loginType.placeholder} />
                             </Form.Item>

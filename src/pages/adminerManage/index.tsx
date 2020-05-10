@@ -47,7 +47,11 @@ const AdminerManage: React.FC<AdminerManageProps> = (props) => {
             fetchData({
                 url: ADMINER_MANAGE,
                 type: 'GET',
-                data: values
+                data: {
+                    ...values,
+                    pageNo,
+                    pageSize
+                }
             }).then(res => {
                 setIsLoading(false)
                 setTableData(res.result?.data)
@@ -115,8 +119,8 @@ const AdminerManage: React.FC<AdminerManageProps> = (props) => {
             <Form form={form}>
                 <Row gutter={24}>
                     <SearchForm formConfig={formConfig} />
-                    <Col span={7} offset={1}>
-                        <Space size={20}>
+                    <Col span={8} offset={16}>
+                        <Space size={30}>
                             <Button type='primary' onClick={() => getTableData()}>查询</Button>
                             <Button onClick={() => resetFields()}>重置</Button>
                             <Button type='dashed' icon={<PlusOutlined />}
@@ -126,7 +130,7 @@ const AdminerManage: React.FC<AdminerManageProps> = (props) => {
                     </Col>
                 </Row>
             </Form>
-            <Table bordered
+            <Table bordered style={{ marginTop: 20 }}
                 rowKey={(record: adminerManageItemType, index: number) => String(index)}
                 pagination={{
                     defaultPageSize: 20,

@@ -10,7 +10,7 @@ export const defaultPrimaryColor = '#1890ff'
 export const defaultSetting: themeSettingType = {
     navTheme: 'dark',
     navColor: darkNavColor,
-    navMode: 'topmenu',
+    navMode: 'sidemenu',
     primaryColor: defaultPrimaryColor,
     colourWeakness: 0
 }

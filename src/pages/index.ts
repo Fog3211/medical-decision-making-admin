@@ -7,8 +7,6 @@ import Home from "./home"
 import NotFound from "./notFound"
 import HospitalManage from "./hospitalManage"
 import ModifyPassword from "./modifyPassword"
-import NewsPush from "./newsPush"
-import DecisionSetting from "./decisionSetting"
 import DecisionAudit from "./decisionAudit"
 
 export {
@@ -21,7 +19,5 @@ export {
     NotFound,
     HospitalManage,
     ModifyPassword,
-    NewsPush,
-    DecisionSetting,
     DecisionAudit
 }

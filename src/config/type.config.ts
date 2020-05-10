@@ -9,6 +9,7 @@ export type searchFormType = {
     formProps: FormPropsType
     comProps: ComPropsType
     filter?: boolean
+    requestUrl?: string
 }
 export type FormPropsType = {
     name: string
@@ -68,18 +69,25 @@ export type loginTypeConfigType = {
 }
 //疾病数据管理类型
 export type diseaseDataListType = {
-    id: string
+    _id: string
     handler: string
     createAt: string
     name: string
-    diseaseCode: string
 }
 //医院数据管理类型
 export type hospitalListType = {
-    id: string
+    _id: string
     handler: string
     createAt: string
     name: string
+}
+//决策审核数据管理类型
+export type decisionAuditListType = {
+    _id: string
+    handler: string
+    createAt: string
+    name: string
+    question: string
 }
 // 主题设置
 export type themeSettingType = {

@@ -856,15 +856,6 @@ export default `
   .ant-table-filter-dropdown-link:active {
     color: var(--primary-active-color);
   }
-  .ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
-  .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
-  .ant-table-thead > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td,
-  .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
-    background: var(--primary-shadow-color);
-  }
-  .ant-table-row-expand-icon:focus, .ant-table-row-expand-icon:hover {
-    color: var(--primary-hover-color);
-  }
   .ant-timeline-item-head-blue {
     color: var(--primary-color);
     border-color: var(--primary-color);
@@ -991,8 +982,18 @@ export default `
     color: var(--primary-hover-color);
     border-color: var(--primary-hover-color);
   }
+  .ant-drawer .ant-btn-primary:hover {
+    color: #fff;
+  }
   .ant-menu-dark,
   .ant-menu-dark .ant-menu-sub{
     background:var(--nav-color);
+  }
+  .ant-pro-sider-menu-sider.light .ant-pro-sider-menu-logo h1{
+    color: var(--primary-color);
+  }
+  .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected,
+  .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    color: var(--primary-color);
   }
 `

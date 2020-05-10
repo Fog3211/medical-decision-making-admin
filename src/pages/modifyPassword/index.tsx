@@ -3,7 +3,7 @@ import { Button, Card, Form, message } from 'antd'
 import { FormProps } from 'antd/es/form'
 import { SearchForm } from '@components/index'
 import { formItemLayout, modifyPasswordForm } from '@config/form.config'
-import { AUTH_MANAGE } from '@config/api.config'
+import { ADMINER_MANAGE } from '@config/api.config'
 import { GlobalContext } from '@store/index'
 import { fetchData, encryptionUtils } from '@utils/index'
 import styles from './index.less'
@@ -24,14 +24,14 @@ const ModifyPassword: React.FC<ModifyPasswordProps> = (props) => {
     const submitForm = (values: anyObj) => {
         fetchData({
             type: 'PUT',
-            url: `${AUTH_MANAGE}/${id}`,
+            url: `${ADMINER_MANAGE}/${id}`,
             data: {
                 ...values,
                 password: encryptionUtils.encrypt(values.password)
             },
         }).then(() => {
             message.success('密码修改成功,请重新登录')
-            window.location.hash = '/#login'
+            window.location.href = '/#login'
         })
     }
     // 填充表单的值
@@ -50,7 +50,7 @@ const ModifyPassword: React.FC<ModifyPasswordProps> = (props) => {
         }
         fetchData({
             type: 'GET',
-            url: `${AUTH_MANAGE}/${id}`,
+            url: `${ADMINER_MANAGE}/${id}`,
         }).then((res) => {
             initFormValues(res.result)
         })

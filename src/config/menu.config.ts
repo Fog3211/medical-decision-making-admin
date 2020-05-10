@@ -19,21 +19,12 @@ export const menus = [
       { path: '/adminer', name: '后台人员管理', icon: 'grade', exact: true, },
     ],
   },
-  // {
-  //   path: '/push',
-  //   name: '推送管理',
-  //   icon: 'notification',
-  //   children: [
-  //     { path: '/news', name: '医学信息推送', icon: 'bell', exact: true, },
-  //   ],
-  // },
   {
     path: '/decision',
     name: '决策管理',
     icon: 'profile',
     children: [
-      { path: '/audit', name: '决策审核', icon: 'audit', exact: true, },
-      { path: '/decisionSetting', name: '决策设置', icon: 'setting', exact: true, },
+      { path: '/audit', name: '决策审核', icon: 'audit', exact: true, }
     ],
   },
 ]

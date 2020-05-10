@@ -3,7 +3,7 @@ type anyObj = {
     [name: string]: any
 }
 // 主题设置相关类型
-type menuLayoutType = 'topmenu' | 'leftmenu'
+type menuLayoutType = 'topmenu' | 'sidemenu'
 type MenuThemeProps = 'light' | 'dark'
 // 日期类型
 type dateType = {

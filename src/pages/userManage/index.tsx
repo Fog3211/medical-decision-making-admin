@@ -75,7 +75,7 @@ const UserManage: React.FC<UserManageProps> = (props) => {
         const columns = [
             ...userManageColumns,
             {
-                title: '操作', dataIndex: 'operate', align: 'center', key: 'operate',
+                title: '操作', dataIndex: 'operate', align: 'center', key: 'operate', fixed: 'right',
                 render: (text, record: userManageItemType) => {
                     return (
                         <div className={styles['operate-box']}>
@@ -131,6 +131,7 @@ const UserManage: React.FC<UserManageProps> = (props) => {
             </Form>
             <Table bordered
                 rowKey={(record: userManageItemType, index: number) => String(index)}
+                scroll={{ x: 1500 }}
                 pagination={{
                     defaultPageSize: 20,
                     current: pageNo,

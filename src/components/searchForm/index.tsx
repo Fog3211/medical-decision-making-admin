@@ -57,11 +57,9 @@ const SearchForm: React.FC<SearchFormProps> = (props) => {
     }
     const getSelectList = async (url: string) => {
         const res = await fetchData({
-            url,
-            type: 'GET',
-            data: {}
+            url
         })
-        return res.result.map(u => { return { id: u.cate_id, name: u.name } })
+        return res.result.map(u => { return { id: u.key, name: u.name } })
     }
     const initSelectList = async () => {
         if (!Array.isArray(_formConfig)) {

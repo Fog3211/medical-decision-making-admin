@@ -73,10 +73,10 @@ const hospitalManage: React.FC<hospitalManageProps> = (props) => {
                     return (
                         <div className={styles['operate-box']}>
                             <Tag className={styles['show-detail-btn']}
-                                onClick={() => showHospitalDetail(record.id)} color='var(--info-color)'>查看详情</Tag>
+                                onClick={() => showHospitalDetail(record._id)} color='var(--info-color)'>查看详情</Tag>
                             <Popconfirm
                                 title="确定删除本条医院数据？"
-                                onConfirm={() => handleDeleteHospital(record.id)}
+                                onConfirm={() => handleDeleteHospital(record._id)}
                                 okText="是"
                                 cancelText="否"
                             >
@@ -120,16 +120,16 @@ const hospitalManage: React.FC<hospitalManageProps> = (props) => {
             <Form form={form} onFinish={getTableData}>
                 <Row gutter={24}>
                     <SearchForm formConfig={formConfig} />
-                    <Col span={8} offset={16} style={{ textAlign: 'right' }}>
-                        <Space size={20}>
+                    <Col span={8} style={{ textAlign: 'center' }}>
+                        <Space size={30}>
                             <Button type='primary' htmlType='submit'>查询</Button>
                             <Button onClick={() => resetFields()}>重置</Button>
-                            <Button type='dashed' icon={<PlusOutlined />}>添加数据</Button>
+                            {/* <Button type='dashed' icon={<PlusOutlined />}>添加数据</Button> */}
                         </Space>
                     </Col>
                 </Row>
             </Form>
-            <Table bordered className={styles['hospital-data-list']}
+            <Table bordered className={styles['hospital-manage-list']}
                 rowKey={(record: hospitalListType, index: number) => String(index)}
                 scroll={{ x: 1500 }}
                 pagination={{

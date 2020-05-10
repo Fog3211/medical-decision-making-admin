@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Row, Col, Drawer, Form, message, Select, Input } from 'antd'
-import { AUTH_MANAGE } from '@config/api.config'
+import { AUTH_MANAGE, ADMINER_MANAGE } from '@config/api.config'
 import { formItemLayout } from '@config/form.config'
-import { fetchData } from '@utils/index'
+import { fetchData, encryptionUtils } from '@utils/index'
 import styles from './index.less'
 
 const { Option } = Select
@@ -24,15 +24,16 @@ const AdminerCreate: React.FC<AdminerCreateProps> = (props: AdminerCreateProps) 
     // 确认完成
     const handleSubmitForm = () => {
         validateFields().then(values => {
-            console.log(values)
             fetchData({
-                type: 'GET',
-                url: '',
+                type: 'POST',
+                url: ADMINER_MANAGE,
                 data: {
-                    values
+                    ...values,
+                    password: encryptionUtils.encrypt(values.password)
                 },
             }).then(() => {
                 message.success('操作成功')
+                closeAdminerCreate()
                 getTableData()
             })
         })
@@ -75,7 +76,7 @@ const AdminerCreate: React.FC<AdminerCreateProps> = (props: AdminerCreateProps) 
                 }>
                 <Row className={styles['form-box']}>
                     <Col span={24}>
-                        <Form.Item name='username' label='用户名' rules={[
+                        <Form.Item name='name' label='用户名' rules={[
                             { required: true, whitespace: true, message: '用户名不能为空' }]} >
                             <Input placeholder='请填写用户名' />
                         </Form.Item>
@@ -102,7 +103,7 @@ const AdminerCreate: React.FC<AdminerCreateProps> = (props: AdminerCreateProps) 
                         </Form.Item>
                     </Col>
                     <Col span={24}>
-                        <Form.Item name='adminer_code' label='权限类型' rules={[{ required: true, message: '请选择权限类型' }]}>
+                        <Form.Item name='auth' label='权限类型' rules={[{ required: true, message: '请选择权限类型' }]}>
                             <Select placeholder='请选择权限类型'>
                                 {
                                     adminerCodeList.map((item: selectType, index: number) => (

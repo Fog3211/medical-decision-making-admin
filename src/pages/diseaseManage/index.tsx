@@ -29,6 +29,7 @@ const DiseaseManage: React.FC<DiseaseManageProps> = (props) => {
     // 获取表格数据
     const getTableData = () => {
         validateFields().then(values => {
+            console.log(values)
             setIsLoading(true)
             fetchData({
                 type: 'GET',
@@ -62,29 +63,29 @@ const DiseaseManage: React.FC<DiseaseManageProps> = (props) => {
         const columns = [
             ...diseaseManageColumns,
             {
-                title: '搜索关键词', dataIndex: 'tag', align: 'center', key: 'tag', render: (value: any) => {
-                    return value.slice(0, 5).map((u: string, index: number) => (
+                title: '别称', dataIndex: 'alias', align: 'center', key: 'alias', render: (value: any) => {
+                    return value?.split('，').slice(0, 5).map((u: string, index: number) => (
                         <Tag key={index}>{u}</Tag>
                     ))
                 }
             },
             {
-                title: '操作', dataIndex: 'operate', align: 'center', key: 'operate',
+                title: '操作', dataIndex: 'operate', align: 'center', key: 'operate', fixed: 'right',
                 render: (text, record: diseaseDataListType) => {
                     return (
                         <div className={styles['operate-box']}>
                             <Tag className={styles['show-detail-btn']}
-                                onClick={() => showDiseaseDetail(record.id)} color='var(--info-color)'>查看详情</Tag>
+                                onClick={() => showDiseaseDetail(record._id)} color='var(--info-color)'>查看详情</Tag>
                             <Popconfirm
                                 title="确定删除本条疾病数据？"
-                                onConfirm={() => handleDeleteDisease(record.id)}
+                                onConfirm={() => handleDeleteDisease(record._id)}
                                 okText="是"
                                 cancelText="否"
                             >
                                 <Button type='primary' danger size='small'
                                     style={{ marginLeft: 20, fontSize: 12 }} >删除</Button>
                             </Popconfirm>
-                        </div>
+                        </div >
                     )
                 }
             }
@@ -121,16 +122,17 @@ const DiseaseManage: React.FC<DiseaseManageProps> = (props) => {
             <Form form={form} onFinish={getTableData}>
                 <Row gutter={24}>
                     <SearchForm formConfig={formConfig} />
-                    <Col span={8} offset={16} style={{ textAlign: 'right' }}>
-                        <Space size={20}>
+                    <Col span={8} style={{ textAlign: 'center' }}>
+                        <Space size={30}>
                             <Button type='primary' htmlType='submit'>查询</Button>
                             <Button onClick={() => resetFields()}>重置</Button>
-                            <Button type='dashed' icon={<PlusOutlined />}>添加数据</Button>
+                            {/* <Button type='dashed' icon={<PlusOutlined />}>添加数据</Button> */}
                         </Space>
                     </Col>
                 </Row>
             </Form>
-            <Table bordered className={styles['disease-data-list']}
+            <Table bordered className={styles['disease-manage-list']}
+                scroll={{ x: 1500 }}
                 rowKey={(record: diseaseDataListType, index) => String(index)}
                 pagination={{
                     defaultPageSize: 20,

@@ -66,9 +66,9 @@ const DiseaseDetail: React.FC<DiseaseDetailProps> = (props) => {
     }, [isDiseaseDetailShow])
 
     return (
-        <Form className={styles['disease-detail']} form={form} {...formItemLayout}>
+        <Form className={styles['disease-detail']} form={form}>
             <Modal
-                title="用户详细信息"
+                title="疾病详细信息"
                 width={800}
                 destroyOnClose
                 visible={isDiseaseDetailShow}
