@@ -5,14 +5,14 @@ import { diseaseManageForm } from '@config/form.config'
 import { diseaseManageColumns } from '@config/table.config'
 import { searchFormType, diseaseDataListType } from '@config/type.config'
 import { DISEASE_MANAGE } from '@config/api.config'
-import { DiseaseDetail } from './widget/index'
+import { DiseaseDetail, BatchAdd } from './widget/index'
 import { fetchData } from '@utils/index'
 import { PlusOutlined } from '@ant-design/icons'
 import styles from './index.less'
 
 export interface DiseaseManageProps { }
 
-const DiseaseManage: React.FC<DiseaseManageProps> = (props) => {
+const DiseaseManage: React.FC<DiseaseManageProps> = () => {
     const [formConfig, setFormConfig] = useState<searchFormType[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [tableData, setTableData] = useState<diseaseDataListType[]>([])
@@ -107,6 +107,10 @@ const DiseaseManage: React.FC<DiseaseManageProps> = (props) => {
             getTableData()
         })
     }
+    // 批量新增数据
+    const handleAddData = () => {
+
+    }
 
     useEffect(() => {
         initSearchForm()
@@ -126,7 +130,7 @@ const DiseaseManage: React.FC<DiseaseManageProps> = (props) => {
                         <Space size={30}>
                             <Button type='primary' htmlType='submit'>查询</Button>
                             <Button onClick={() => resetFields()}>重置</Button>
-                            {/* <Button type='dashed' icon={<PlusOutlined />}>添加数据</Button> */}
+                            <Button type='dashed' icon={<PlusOutlined />} onClick={() => handleAddData()}>添加数据</Button>
                         </Space>
                     </Col>
                 </Row>
@@ -152,6 +156,7 @@ const DiseaseManage: React.FC<DiseaseManageProps> = (props) => {
                 currentRecordId={currentRecordId}
                 getTableData={getTableData}
                 closeDiseaseDetail={() => setIsDiseaseDetailShow(false)} />
+            {/* <BatchAdd/> */}
         </div>
     )
 }

@@ -36,7 +36,17 @@ const DecisionAuditDetail: React.FC<DecisionAuditDetailProps> = (props) => {
     }
     // 填充表单
     const handleFormFixed = (data: anyObj) => {
-        setFieldsValue(data)
+        const result = {
+            ...data
+        }
+        if (data.status === 1) {
+            result.status = '未处理'
+        } else if (data.status === 2) {
+            result.status = '正在处理'
+        } else {
+            result.status = '已完成'
+        }
+        setFieldsValue(result)
     }
     // 初始化搜索form
     const initSearchForm = () => {

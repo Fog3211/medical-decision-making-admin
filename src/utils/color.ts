@@ -222,19 +222,9 @@ export default `
   .ant-menu-item-selected {
     color: var(--primary-color);
   }
-  .ant-menu:not(.ant-menu-dark) .ant-menu-item-selected>a,
-  .ant-menu:not(.ant-menu-dark) .ant-menu-submenu-selected,
-  .ant-menu:not(.ant-menu-dark) .ant-menu-sub .ant-menu-item:hover>a,
-  .ant-menu:not(.ant-menu-dark) .ant-menu-sub .ant-menu-item-selected > a,
-  .ant-menu:not(.ant-menu-dark) .ant-menu-sub .ant-menu-item-selected > a:hover {
-    color: var(--primary-color);
-  }
   .ant-menu-submenu:not(.ant-menu-light) .ant-menu .ant-menu-item-selected>a,
   .ant-menu-submenu:not(.ant-menu-light) .ant-menu .ant-menu-submenu-selected{
     color: #fff;
-  }
-  .ant-menu:not(.ant-menu-dark) .ant-menu-submenu-open .ant-menu-item-selected > a{
-    color: var(--primary-color);
   }
   .ant-menu-dark .ant-menu-submenu-open a:hover,
   .ant-menu-dark .ant-menu-submenu-open .ant-menu-item-active > a,
@@ -287,6 +277,7 @@ export default `
   .ant-menu.ant-menu-dark .ant-menu-item-selected,
   .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
     background-color: var(--primary-color);
+    color:#fff;
   }
   .ant-dropdown-menu-item-selected,
   .ant-dropdown-menu-submenu-title-selected,
@@ -462,9 +453,6 @@ export default `
   }
   .ant-checkbox-indeterminate .ant-checkbox-inner::after {
     background-color: var(--primary-color);
-  }
-  .ant-calendar-selected-day .ant-picker-cell-inner {
-    background: var(--primary-shadow-color);
   }
   .ant-calendar-picker:hover .ant-calendar-picker-input:not(.ant-input-disabled) {
     border-color: var(--primary-color);
@@ -787,15 +775,9 @@ export default `
   .ant-slider-dot-active {
     border-color: var(--primary-active-color);
   }
-  .ant-steps-item-icon > .ant-steps-icon {
-    color: var(--primary-color);
-  }
   .ant-steps-item-process .ant-steps-item-icon {
     background-color: #fff;
     border-color: var(--primary-color);
-  }
-  .ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon {
-    color: var(--primary-color);
   }
   .ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon .ant-steps-icon-dot {
     background: var(--primary-color);
@@ -985,15 +967,34 @@ export default `
   .ant-drawer .ant-btn-primary:hover {
     color: #fff;
   }
-  .ant-menu-dark,
-  .ant-menu-dark .ant-menu-sub{
-    background:var(--nav-color);
+  .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+  .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner, 
+  .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner{
+    background:var(--primary-color);
   }
-  .ant-pro-sider-menu-sider.light .ant-pro-sider-menu-logo h1{
+  .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background:var(--primary-color);
+    color:#fff;
+  }
+  .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before{
+    border:1px solid var(--primary-color);
+  }
+  .ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner{
+    background:var(--primary-hover-color);
+  }
+  .ant-radio-button-wrapper-checked:not([class*=' ant-radio-button-wrapper-disabled']).ant-radio-button-wrapper:first-child{
+    border-right-color:var(--primary-color);
+  }
+  .ant-menu-submenu-selected,
+  .ant-menu-item-selected a{
     color: var(--primary-color);
   }
-  .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected,
-  .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+  .ant-pro-sider-menu-sider.light .ant-pro-sider-menu-logo h1 {
     color: var(--primary-color);
+  }
+  .ant-picker:hover, .ant-picker-focused,
+  .ant-picker-focused{
+    border-color: var(--primary-color);
+    box-shadow:0 0;
   }
 `

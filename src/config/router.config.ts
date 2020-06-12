@@ -1,5 +1,5 @@
 import {
-  DataStatistic, DiseaseManage,
+  DiseaseManage,
   UserManage, AdminerManage,
   NotFound, Home, ModifyPassword,
   DecisionAudit,
@@ -18,13 +18,6 @@ export interface routeConfigType {
 }
 
 const routes: routeConfigType[] = [
-  {
-    path: '/statistic',
-    template: DataStatistic,
-    name: '数据统计',
-    exact: true,
-    key: 'statistic'
-  },
   {
     path: '/disease',
     template: DiseaseManage,

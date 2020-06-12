@@ -22,10 +22,6 @@ const UserInfo: React.FC<UserInfoProps> = (props) => {
         sessionStorage.clear()
         window.location.href = '/#login'
     }
-    // 切换主题
-    const changeTheme = () => {
-
-    }
 
     return (
         <div className={styles['user-info']}>
@@ -33,9 +29,6 @@ const UserInfo: React.FC<UserInfoProps> = (props) => {
                 <Menu>
                     <Menu.Item>
                         <Link to='/modifyPassword'> {IconMap['key']} 修改密码</Link>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <span onClick={() => changeTheme()}>{IconMap['theme']}自定义主题</span>
                     </Menu.Item>
                     <Menu.Item>
                         <span onClick={() => handleLogout()}>{IconMap['logout']}注销登录</span>

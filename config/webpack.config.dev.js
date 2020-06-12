@@ -48,7 +48,7 @@ module.exports = merge(common, {
     new ForkTsCheckerWebpackPlugin(),
   ],
   devServer: {
-    'host': 'localhost',
+    'host': '127.0.0.1',
     // 'port': 8181,
     // 报错提示在网页遮罩层
     'overlay': true,
@@ -56,7 +56,7 @@ module.exports = merge(common, {
     'progress': true,
     'proxy': {
       '/admin': {
-        target: 'http://localhost:7001',
+        target: 'http://127.0.0.1:7001',
         pathRewrite: {
           '^/admin': '/admin',
         },

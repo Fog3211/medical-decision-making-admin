@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { SearchForm } from '@components/index'
-import { Form, Row, Col, Button, Table, Popconfirm, message } from 'antd'
+import { Form, Row, Col, Button, Table } from 'antd'
 import { searchFormType, userManageItemType } from '@config/type.config'
 import { userManageForm } from '@config/form.config'
 import { userManageColumns } from '@config/table.config'
@@ -55,16 +55,6 @@ const UserManage: React.FC<UserManageProps> = (props) => {
             })
         })
     }
-    // 封禁用户
-    const handleForbiddenUser = (id: string) => {
-        fetchData({
-            url: `${USER_MANAGE}/${id}`,
-            type: 'DELETE'
-        }).then(() => {
-            message.success('封禁/解封成功')
-            getTableData()
-        })
-    }
     // 查看详细信息
     const showUserDetail = (id: string) => {
         setCurrentRecordId(id)
@@ -80,27 +70,6 @@ const UserManage: React.FC<UserManageProps> = (props) => {
                     return (
                         <div className={styles['operate-box']}>
                             <Button onClick={() => showUserDetail(record.id)} size='small'>查看</Button>
-                            {
-                                record.isForbidden ?
-                                    <Popconfirm
-                                        title="确定解禁该用户?"
-                                        onConfirm={() => handleForbiddenUser(record.id)}
-                                        okText="是"
-                                        cancelText="否"
-                                    >
-                                        <Button type='primary' size='small'
-                                            style={{ marginLeft: 20, fontSize: 12 }} >解禁</Button>
-                                    </Popconfirm> :
-                                    <Popconfirm
-                                        title="确定封禁该用户?"
-                                        onConfirm={() => handleForbiddenUser(record.id)}
-                                        okText="是"
-                                        cancelText="否"
-                                    >
-                                        <Button type='primary' danger size='small'
-                                            style={{ marginLeft: 20, fontSize: 12 }} >封禁</Button>
-                                    </Popconfirm>
-                            }
                         </div>
                     )
                 }

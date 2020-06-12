@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { BgColorsOutlined, SettingOutlined } from '@ant-design/icons'
-import { Switch, Drawer, Divider, Button, Slider, Radio, Popover } from 'antd'
+import { Switch, Drawer, Divider, Slider, Radio, Popover } from 'antd'
 import { SketchPicker } from 'react-color'
 import { themeSettingType } from '@config/type.config'
 import { defaultSetting, presetColorList, lightNavColor, darkNavColor } from '@config/theme.config'
+import { lodashUtils } from '@utils/index'
 import styles from './index.less'
 
 interface ThemePickerProps {
@@ -13,7 +14,7 @@ interface ThemePickerProps {
 const ThemePicker: React.FC<ThemePickerProps> = (props) => {
     const { changeThemeByLocalSetting } = props
 
-    const [themeSetting, setThemeSetting] = useState<themeSettingType>(defaultSetting)
+    const [themeSetting, setThemeSetting] = useState<themeSettingType>(lodashUtils.cloneDeep(defaultSetting))
     const [isDrawerShow, setIsDrawerShow] = useState<boolean>(false)
     const [isShowThemeSetting, setIsShowThemeSetting] = useState<boolean>(false)
 
@@ -36,23 +37,12 @@ const ThemePicker: React.FC<ThemePickerProps> = (props) => {
         changeThemeByLocalSetting(copyThemeSetting)
         localStorage.setItem("af-theme-setting", JSON.stringify(copyThemeSetting))
     }
-    // 还原默认设置
-    const resetThemeSetting = () => {
-        setThemeSetting(defaultSetting)
-        useThemeSetting(defaultSetting)
-    }
     // 从本地获取主题
     const initThemeSetting = () => {
         const themeSetting = JSON.parse(localStorage.getItem("af-theme-setting"))
         if (themeSetting) {
             setThemeSetting(themeSetting)
         }
-    }
-    // 设置主题
-    const useThemeSetting = (themeSetting: themeSettingType) => {
-        Object.keys(themeSetting).forEach((key) => {
-            changeThemeSetting(key, themeSetting[key])
-        })
     }
 
     useEffect(() => {
@@ -125,10 +115,6 @@ const ThemePicker: React.FC<ThemePickerProps> = (props) => {
                 <h3>色弱调整</h3>
                 <Slider max={100} value={themeSetting.colourWeakness} onChange={(value) => changeThemeSetting('colourWeakness', value)} />
                 <Divider />
-            </div>
-
-            <div style={{ textAlign: 'right' }} onClick={() => resetThemeSetting()}>
-                <Button>还原默认设置</Button>
             </div>
 
         </Drawer>

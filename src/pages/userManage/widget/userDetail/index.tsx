@@ -35,7 +35,15 @@ const UserDetail: React.FC<UserDetailProps> = (props) => {
     }
     // 填充表单
     const handleFormFixed = (data: anyObj) => {
-        setFieldsValue(data)
+        const result = {
+            ...data
+        }
+        if (data.sex === 1) {
+            result.sex = '男'
+        } else {
+            result.sex = '女'
+        }
+        setFieldsValue(result)
     }
     // 初始化搜索form
     const initSearchForm = () => {

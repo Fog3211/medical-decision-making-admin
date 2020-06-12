@@ -1,4 +1,3 @@
-import DataStatistic from "./dataStatistic"
 import AdminerManage from "./adminerManage"
 import UserManage from "./userManage"
 import DiseaseManage from "./diseaseManage"
@@ -10,7 +9,6 @@ import ModifyPassword from "./modifyPassword"
 import DecisionAudit from "./decisionAudit"
 
 export {
-    DataStatistic,
     AdminerManage,
     UserManage,
     DiseaseManage,
