@@ -49,7 +49,7 @@ module.exports = merge(common, {
   ],
   devServer: {
     'host': '127.0.0.1',
-    // 'port': 8181,
+    'port': 8081,
     // 报错提示在网页遮罩层
     'overlay': true,
     // 显示运行进度
